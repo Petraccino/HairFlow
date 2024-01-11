@@ -1,8 +1,0 @@
-package it.hair.flow.conf;
-
-import org.springframework.stereotype.Component;
-
-@Component
-public class RouteValidator {
-
-}
