@@ -1,0 +1,28 @@
+spring:
+ cloud:
+   gateway:
+     routes:
+       - id: HairFlow-client
+         uri: lb://HAIRFLOW-CLIENT
+         predicates:
+           - Path=/client/**
+         filters:
+           - AuthenticationFilter
+server:
+  port: 8771
+
+spring:
+  application:
+    name: HAIRFLOW-GATAWAY
+  cloud:
+    gateway:
+      routes:
+        - id: HairFlow-client
+          uri: lb://HAIRFLOW-CLIENT
+          predicates:
+            - Path=/client/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone : http://localhost:8761/eureka/

@@ -1,0 +1,5 @@
+package it.hair.flow.service;
+
+public interface ClienteService {
+
+}

@@ -1,0 +1,20 @@
+server:
+   port: 8771
+spring:
+  application:
+     name: HairFlow-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: HairFlow-client
+          uri: 'http://localhost:8201'
+          predicates:
+            - Path=/client**
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: posts-route
+          uri: ${CLIENT_ROUTE_URI:http://localhost:8201}
+          predicates:
+            - Path=/client**

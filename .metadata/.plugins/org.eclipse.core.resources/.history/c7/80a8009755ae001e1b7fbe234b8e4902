@@ -1,0 +1,7 @@
+package it.hair.flow.service.impl;
+
+import it.hair.flow.service.ClienteService;
+
+public class ClienteServiceImpl implements ClienteService{
+
+}

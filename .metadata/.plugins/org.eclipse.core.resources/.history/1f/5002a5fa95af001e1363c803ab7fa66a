@@ -1,0 +1,6 @@
+package it.hair.flow.conf;
+
+
+public class RouteValidator {
+
+}

@@ -1,0 +1,5 @@
+package it.hair.flow.controller.impl;
+
+public class ClienteControllerImpl {
+
+}
