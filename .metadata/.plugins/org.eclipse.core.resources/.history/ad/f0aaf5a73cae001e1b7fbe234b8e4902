@@ -1,9 +1,0 @@
-spring:
-  application:
-    name: HairFlow-client
-server:
-  port: 8201
-
-eureka:
-  client:
-    sevice-url: 

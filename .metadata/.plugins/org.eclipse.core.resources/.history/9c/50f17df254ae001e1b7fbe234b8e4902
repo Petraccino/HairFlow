@@ -1,5 +1,0 @@
-package it.hair.flow.repository;
-
-public interface ClienteRepository {
-
-}

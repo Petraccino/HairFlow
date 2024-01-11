@@ -1,9 +1,0 @@
-package it.hair.flow.service;
-
-public interface ClienteService {
-	public ClienteEntity findPostFacebookById(Integer id) throws Exception;
-	public List<PostFacebook> findPostsFacebook()throws Exception;
-	public PostFacebook addOrUpdatePostFacebook(PostFacebook postFacebook)throws Exception;
-	public Map<String, Boolean> deleteById(Integer id) throws Exception;
-
-}
