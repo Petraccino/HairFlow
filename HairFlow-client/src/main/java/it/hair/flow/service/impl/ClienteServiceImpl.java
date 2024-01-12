@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.hair.flow.entity.ClienteEntity;
+import it.hair.flow.entity.Cliente;
 import it.hair.flow.repository.ClienteRepository;
 import it.hair.flow.service.ClienteService;
 
@@ -18,14 +18,14 @@ public class ClienteServiceImpl implements ClienteService{
 	private ClienteRepository clienteRepository;
 
 	@Override
-	public ClienteEntity findById(Integer id) throws Exception {
-		ClienteEntity postFacebook = clienteRepository.findById(id).orElseThrow(()-> new Exception("Not found post Client"));
+	public Cliente findById(Integer id) throws Exception {
+		Cliente postFacebook = clienteRepository.findById(id).orElseThrow(()-> new Exception("Not found post Client"));
 		return postFacebook;
 	}
 
 	@Override
-	public List<ClienteEntity> findClients() throws Exception {
-		List<ClienteEntity> clients = clienteRepository.findAll();
+	public List<Cliente> findClients() throws Exception {
+		List<Cliente> clients = clienteRepository.findAll();
 		if(clients.isEmpty()) {
 			throw new Exception("The list of Client is empty");
 		} else {
@@ -34,8 +34,8 @@ public class ClienteServiceImpl implements ClienteService{
 	}
 
 	@Override
-	public ClienteEntity addOrUpdateClient(ClienteEntity client) throws Exception {
-		ClienteEntity clientAddOrUpdate = clienteRepository.save(client);
+	public Cliente addOrUpdateClient(Cliente client) throws Exception {
+		Cliente clientAddOrUpdate = clienteRepository.save(client);
 		if (!clientAddOrUpdate.getNome().equals(client.getNome()) ) {
 			throw new Exception("Insert or update for client failed");
 		} else {
@@ -46,7 +46,7 @@ public class ClienteServiceImpl implements ClienteService{
 	@Override
 	public Map<String, Boolean> deleteById(Integer id) throws Exception {
 		Map<String, Boolean> map = new HashMap<String,Boolean>();
-		ClienteEntity client = findById(id);
+		Cliente client = findById(id);
 		try {
 			clienteRepository.deleteById(id);
 			map.put("Deletion: "+client.getNome(), Boolean.TRUE);

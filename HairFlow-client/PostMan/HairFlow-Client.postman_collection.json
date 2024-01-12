@@ -123,22 +123,15 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/client/hair-flow/client/delete/:id",
+					"raw": "http://localhost:53013/hair-flow/clients",
+					"protocol": "http",
 					"host": [
-						"{{url}}"
+						"localhost"
 					],
+					"port": "53013",
 					"path": [
-						"client",
 						"hair-flow",
-						"client",
-						"delete",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "35"
-						}
+						"clients"
 					]
 				}
 			},

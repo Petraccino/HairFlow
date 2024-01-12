@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.hair.flow.controller.ClienteController;
-import it.hair.flow.entity.ClienteEntity;
+import it.hair.flow.entity.Cliente;
 import it.hair.flow.service.ClienteService;
 
 @RestController
@@ -17,21 +17,21 @@ public class ClienteControllerImpl implements ClienteController{
 	private ClienteService clienteService;
 
 	@Override
-	public ClienteEntity findById(Integer id) throws Exception {
+	public Cliente findById(Integer id) throws Exception {
 		return clienteService.findById(id);
 	}
 
 	@Override
-	public List<ClienteEntity> findClients() throws Exception {
+	public List<Cliente> findClients() throws Exception {
 		return clienteService.findClients();
 	}
 	@Override
-	public ClienteEntity addClient(ClienteEntity client) throws Exception {
+	public Cliente addClient(Cliente client) throws Exception {
 		return clienteService.addOrUpdateClient(client);
 	}
 
 	@Override
-	public ClienteEntity updateClient(ClienteEntity client) throws Exception {
+	public Cliente updateClient(Cliente client) throws Exception {
 		return clienteService.addOrUpdateClient(client);
 	}
 
