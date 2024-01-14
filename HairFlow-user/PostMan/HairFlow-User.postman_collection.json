@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "9b7c5e9f-0364-4187-a261-456b8426d365",
+		"name": "HairFlow-User",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26856367",
+		"_collection_link": "https://dark-eclipse-152908.postman.co/workspace/Team-Workspace~1bc34670-e337-4a0d-8429-794dcaec3628/collection/26856367-9b7c5e9f-0364-4187-a261-456b8426d365?action=share&source=collection_link&creator=26856367"
+	},
+	"item": [
+		{
+			"name": "findUtentes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/user/hair-flow/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"hair-flow",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/user/hair-flow/user/:id",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"hair-flow",
+						"user",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/user/hair-flow/user",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"hair-flow",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateUser",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/user/hair-flow/user",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"hair-flow",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteById",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/hair-flow/user/delete/:id",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"hair-flow",
+						"user",
+						"delete",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
