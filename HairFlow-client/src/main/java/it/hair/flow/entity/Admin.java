@@ -9,9 +9,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
 @Table(name = "\"Admin\"")
+@Data
 public class Admin {
 	
 	@Id
@@ -25,11 +27,11 @@ public class Admin {
     @Column(nullable = false, length = 50, name = "password")
     private String password;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "grant_id", unique = true)
     private Grant grant;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "informazioni_id", unique = true)
     private InformazioniAdminUtente informazioni;
 }
