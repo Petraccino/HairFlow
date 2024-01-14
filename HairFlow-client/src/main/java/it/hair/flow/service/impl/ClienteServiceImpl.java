@@ -19,8 +19,8 @@ public class ClienteServiceImpl implements ClienteService{
 
 	@Override
 	public Cliente findById(Integer id) throws Exception {
-		Cliente postFacebook = clienteRepository.findById(id).orElseThrow(()-> new Exception("Not found post Client"));
-		return postFacebook;
+		Cliente client = clienteRepository.findById(id).orElseThrow(()-> new Exception("Not found post Client"));
+		return client;
 	}
 
 	@Override
