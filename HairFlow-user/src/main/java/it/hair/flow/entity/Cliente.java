@@ -3,8 +3,6 @@ package it.hair.flow.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -14,8 +12,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -66,11 +62,6 @@ public class Cliente implements Serializable{
     @JoinColumn(name = "grant_id", unique = true)
     private Grant grant;
 
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "utente_cliente",
-            joinColumns = @JoinColumn(name = "cliente_id"),
-            inverseJoinColumns = @JoinColumn(name = "utente_id")
-    )
-    private List<Utente> utentes = new ArrayList<>();
+//    @ManyToMany(mappedBy = "clientes")
+//    private Set<Utente> utentes;
 }

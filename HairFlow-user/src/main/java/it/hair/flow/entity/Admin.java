@@ -1,6 +1,5 @@
 package it.hair.flow.entity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -13,9 +12,9 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "utente")
+@Table(name = "\"Admin\"")
 @Data
-public class Utente {
+public class Admin {
 	
 	@Id
     @Column(nullable = false, updatable = false, name = "id")
@@ -28,15 +27,11 @@ public class Utente {
     @Column(nullable = false, length = 50, name = "password")
     private String password;
 
-    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "grant_id", unique = true)
     private Grant grant;
 
-    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "informazioni_id", unique = true)
     private InformazioniAdminUtente informazioni;
-
-//    @ManyToMany(mappedBy = "utentes")
-//    private Set<Cliente> clientes;
-	
 }

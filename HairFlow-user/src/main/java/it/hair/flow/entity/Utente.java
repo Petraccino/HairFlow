@@ -1,5 +1,8 @@
 package it.hair.flow.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,6 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -36,7 +41,13 @@ public class Utente {
     @JoinColumn(name = "informazioni_id", unique = true)
     private InformazioniAdminUtente informazioni;
 
-//    @ManyToMany(mappedBy = "utentes")
-//    private Set<Cliente> clientes;
+
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinTable(
+    		name = "utente_cliente",
+    		joinColumns = @JoinColumn(name = "utente_id"),
+    		inverseJoinColumns = @JoinColumn(name = "cliente_id")
+    		)
+    private List<Cliente> clientes = new ArrayList<>();
 	
 }
