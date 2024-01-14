@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -39,7 +40,13 @@ public class Utente {
     @JoinColumn(name = "informazioni_id", unique = true)
     private InformazioniAdminUtente informazioni;
 
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER, mappedBy = "utentes")
+    @ManyToMany(mappedBy = "utentes")
+//    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+//    @JoinTable(
+//    		name = "utente_cliente",
+//    		joinColumns = @JoinColumn(name = "utente_id"),
+//    		inverseJoinColumns = @JoinColumn(name = "cliente_id")
+//    		)
     private Set<Cliente> clientes;
 	
 }
