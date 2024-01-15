@@ -19,8 +19,8 @@ public class UtenteServiceImpl implements UtenteService{
 
 	@Override
 	public Utente findById(Integer id) throws Exception {
-		Utente postFacebook = utenteRepository.findById(id).orElseThrow(()-> new Exception("Not found post User"));
-		return postFacebook;
+		Utente utente = utenteRepository.findById(id).orElseThrow(()-> new Exception("Not found User"));
+		return utente;
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class UtenteServiceImpl implements UtenteService{
 	@Override
 	public Utente addOrUpdateUser(Utente utente) throws Exception {
 		Utente utenteAddOrUpdate = utenteRepository.save(utente);
-		if (utenteAddOrUpdate.getInformazioni().getNome() .equals(utente.getInformazioni().getNome()) ) {
+		if (!utenteAddOrUpdate.getInformazioni().getNome().equals(utente.getInformazioni().getNome()) ) {
 			throw new Exception("Insert or update for utente failed");
 		} else {
 			return utenteAddOrUpdate;

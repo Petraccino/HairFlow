@@ -55,7 +55,7 @@ public class Cliente implements Serializable{
     @Column(name = "data_registrazione")
     private OffsetDateTime dataRegistrazione;
 
-    @Column(nullable = false, length = 50, name = "password")
+    @Column(nullable = false, length = 150, name = "password")
     private String password;
  
     @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)

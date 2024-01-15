@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(55) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
   `grant_id` int DEFAULT NULL,
   `informazioni_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -54,13 +54,13 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `sesso` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `data_ultima_visita` date DEFAULT NULL,
   `data_registrazione` timestamp NULL DEFAULT NULL,
-  `password` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
   `grant_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   KEY `grant_id` (`grant_id`),
   CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`grant_id`) REFERENCES `grant` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dump dei dati della tabella hairflow.cliente: ~22 rows (circa)
 REPLACE INTO `cliente` (`id`, `nome`, `cognome`, `data_nascita`, `provincia`, `email`, `numero_telefono`, `sesso`, `data_ultima_visita`, `data_registrazione`, `password`, `grant_id`) VALUES
@@ -108,29 +108,27 @@ CREATE TABLE IF NOT EXISTS `informazioni_admin_utente` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `cognome` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `dataNascita` date DEFAULT NULL,
   `provincia` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `sesso` varchar(1) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `codice_fiscale` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `dataRegistrazione` timestamp NULL DEFAULT NULL,
   `data_nascita` date DEFAULT NULL,
   `data_registrazione` datetime(6) DEFAULT NULL,
   `numero_telefono` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dump dei dati della tabella hairflow.informazioni_admin_utente: ~3 rows (circa)
-REPLACE INTO `informazioni_admin_utente` (`id`, `nome`, `cognome`, `dataNascita`, `provincia`, `sesso`, `codice_fiscale`, `dataRegistrazione`, `data_nascita`, `data_registrazione`, `numero_telefono`) VALUES
-	(1, 'Marco', 'Petraccini', '1997-01-05', 'Roma', 'M', 'PTRMRC97A05H501K', '2024-01-12 13:33:38', NULL, NULL, NULL),
-	(2, 'Daniele', 'Petraccini', '1985-05-20', 'Roma', 'M', 'PTRDNL95C23H501U', '2024-01-12 13:33:38', NULL, NULL, NULL),
-	(3, 'Francesco', 'Coletti', '1982-06-08', 'L\'Aquila', 'M', 'FRNCTT82H08A345K', '2024-01-12 13:42:32', NULL, NULL, NULL);
+REPLACE INTO `informazioni_admin_utente` (`id`, `nome`, `cognome`, `provincia`, `sesso`, `codice_fiscale`, `data_nascita`, `data_registrazione`, `numero_telefono`) VALUES
+	(1, 'Marco', 'Petraccini', 'Roma', 'M', 'PTRMRC97A05H501K', '1997-01-05', '2024-01-15 11:28:09.000000', '3338170586'),
+	(2, 'Daniele', 'Petraccini', 'Roma', 'M', 'PTRDNL95C23H501U', '1995-03-23', '2024-01-15 11:28:15.000000', '3911622131'),
+	(3, 'Francesco', 'Coletti', 'L\'Aquila', 'M', 'FRNCTT82H08A345K', '1982-06-08', '2024-01-15 11:28:16.000000', '3293266450');
 
 -- Dump della struttura di tabella hairflow.utente
 DROP TABLE IF EXISTS `utente`;
 CREATE TABLE IF NOT EXISTS `utente` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(55) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
   `grant_id` int DEFAULT NULL,
   `informazioni_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -139,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `utente` (
   KEY `informazioni_id` (`informazioni_id`),
   CONSTRAINT `utente_ibfk_1` FOREIGN KEY (`grant_id`) REFERENCES `grant` (`id`),
   CONSTRAINT `utente_ibfk_2` FOREIGN KEY (`informazioni_id`) REFERENCES `informazioni_admin_utente` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dump dei dati della tabella hairflow.utente: ~1 rows (circa)
 REPLACE INTO `utente` (`id`, `email`, `password`, `grant_id`, `informazioni_id`) VALUES
@@ -156,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `utente_cliente` (
   CONSTRAINT `utente_cliente_ibfk_2` FOREIGN KEY (`utente_id`) REFERENCES `utente` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dump dei dati della tabella hairflow.utente_cliente: ~0 rows (circa)
+-- Dump dei dati della tabella hairflow.utente_cliente: ~22 rows (circa)
 REPLACE INTO `utente_cliente` (`cliente_id`, `utente_id`) VALUES
 	(1, 1),
 	(2, 1),

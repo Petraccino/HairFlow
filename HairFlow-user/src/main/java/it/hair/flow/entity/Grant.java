@@ -22,5 +22,7 @@ public class Grant {
     private String typeGrant;
 
     @Column(nullable = false, length = 25, name = "descrizione")
-    private String descrizione;	
+    private String descrizione;
+    
+    
 }

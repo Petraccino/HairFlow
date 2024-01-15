@@ -1,6 +1,5 @@
 package it.hair.flow.entity;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
@@ -11,15 +10,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-@Data
 @Entity
-@Table(name = "cliente")
-@EqualsAndHashCode(callSuper = true)
-public class Cliente extends Credential implements Serializable{
-
-	private static final long serialVersionUID = -4953162641040313047L;
+@Table(name = "informazioni_admin_utente")
+@Data
+public class InformazioniAdminUtente {
 	
 	@Id
     @Column(nullable = false, updatable = false, name = "id")
@@ -38,22 +33,16 @@ public class Cliente extends Credential implements Serializable{
     @Column(length = 20, name = "provincia")
     private String provincia;
 
-//    @Column(nullable = false, unique = true, length = 55, name = "email")
-//    private String email;
-
     @Column(length = 20, name = "numero_telefono")
     private String numeroTelefono;
 
     @Column(length = 1, name = "sesso")
     private String sesso;
 
-    @Column(name = "data_ultima_visita")
-    private LocalDate dataUltimaVisita;
+    @Column(length = 30, name = "codice_fiscale")
+    private String codiceFiscale;
 
     @Column(name = "data_registrazione")
     private OffsetDateTime dataRegistrazione;
-
-//    @Column(nullable = false, length = 150, name = "password")
-//    private String password;
-
+	
 }

@@ -53,41 +53,13 @@
 			"response": []
 		},
 		{
-			"name": "addUser",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/user/hair-flow/user",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"user",
-						"hair-flow",
-						"user"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "updateUser",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\r\n    \"id\": 3,\r\n    \"email\": \"example4@example.com\",\r\n    \"password\": \"$2a$10$r1SvWWKN5xFw7yL8G7ceAOEdEBMuvFvZzcuBWP/BfQQcGR1/i00Ta\",\r\n    \"grant\": 2,\r\n    \"informazioni\": {\r\n        \"id\": 11,\r\n        \"nome\": \"Francesco\",\r\n        \"cognome\": \"Coletti\",\r\n        \"dataNascita\": \"1982-06-08\",\r\n        \"provincia\": \"L'Aquila\",\r\n        \"numeroTelefono\": \"3293266450\",\r\n        \"sesso\": \"M\",\r\n        \"codiceFiscale\": \"FRNCTT82H08A345K\",\r\n        \"dataRegistrazione\": \"2024-01-15T11:28:16Z\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -123,11 +95,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/hair-flow/user/delete/:id",
+					"raw": "{{url}}/user/hair-flow/user/delete/:id",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
+						"user",
 						"hair-flow",
 						"user",
 						"delete",
@@ -136,7 +109,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "2"
+							"value": "3"
 						}
 					]
 				}

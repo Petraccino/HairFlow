@@ -30,12 +30,15 @@ public class Utente {
     @Column(nullable = false, unique = true, length = 55, name = "email")
     private String email;
 
-    @Column(nullable = false, length = 50, name = "password")
+    @Column(nullable = false, length = 150, name = "password")
     private String password;
 
-    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "grant_id", unique = true)
-    private Grant grant;
+//    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "grant_id", unique = true)
+//    private Grant grant;
+    
+    @Column(name = "grant_id", nullable = false)
+    private Integer grant;
 
     @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinColumn(name = "informazioni_id", unique = true)

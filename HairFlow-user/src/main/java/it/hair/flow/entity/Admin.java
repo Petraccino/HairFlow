@@ -24,7 +24,7 @@ public class Admin {
     @Column(nullable = false, unique = true, length = 55, name = "email")
     private String email;
 
-    @Column(nullable = false, length = 50, name = "password")
+    @Column(nullable = false, length = 150, name = "password")
     private String password;
 
     @OneToOne(fetch = FetchType.EAGER)
