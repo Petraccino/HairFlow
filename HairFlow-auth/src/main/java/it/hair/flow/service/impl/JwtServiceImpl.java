@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Jwts;
@@ -17,8 +16,10 @@ import it.hair.flow.service.JwtService;
 @Component
 public class JwtServiceImpl implements JwtService{
 	
-	@Value("${config.decoders-secret}")
-	public static String SECRET;
+	
+//	@Value("${config.decoders-secret}")
+//	public static String SECRET;
+	public static String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
 
 	@Override
 	public void validateToken(final String token) {

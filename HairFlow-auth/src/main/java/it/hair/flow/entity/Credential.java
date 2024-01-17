@@ -2,10 +2,14 @@ package it.hair.flow.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @MappedSuperclass
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Credential {
 	
 	@Column(nullable = false, unique = true, length = 55, name = "email")

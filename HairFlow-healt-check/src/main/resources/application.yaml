@@ -7,17 +7,3 @@ server:
 spring:
    application:
      name: HAIRFLOW-HEALT-CHECK
-   cloud:
-     loadbalancer:
-       configurations: healt-check
-       health-check:
-        HAIRFLOW-CLIENT:
-          path: lb://HAIRFLOW-CLIENT/actuator/health/client
-        HAIRFLOW-USER:
-          path: lb://HAIRFLOW-USER/actuator/health/user
-        HAIRFLOW-AUTH:
-          path: lb://HAIRFLOW-USER/actuator/health/auth
-        HAIRFLOW-GATEWAY:
-          path: lb://HAIRFLOW-USER/actuator/health/gateway
-        interval: 5000
-         

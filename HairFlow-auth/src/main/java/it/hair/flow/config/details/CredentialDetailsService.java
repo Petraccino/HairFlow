@@ -29,13 +29,13 @@ public class CredentialDetailsService implements UserDetailsService {
         Optional<Utente> utente = utenteRepository.findUtenteByEmail(email);
         Optional<Cliente> cliente = clienteRepository.findClienteByEmail(email);
         if (admin.isPresent()) {
-            return new CredentialDetails(admin.get());
+        	return admin.map(CredentialDetails::new).orElseThrow(() -> new UsernameNotFoundException("Admin not found with email :" + email));
         } else if (utente.isPresent()) {
-            return new CredentialDetails(utente.get());
+        	return utente.map(CredentialDetails::new).orElseThrow(() -> new UsernameNotFoundException("User not found with email :" + email));
         } else if (cliente.isPresent()) {
-            return new CredentialDetails(cliente.get());
+        	return cliente.map(CredentialDetails::new).orElseThrow(() -> new UsernameNotFoundException("Client not found with email: :" + email));
         } else {
-            throw new UsernameNotFoundException("User not found with email:" + email);
+            throw new UsernameNotFoundException("No user types found with this email:" + email);
         }
 	}
 
