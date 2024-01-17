@@ -42,7 +42,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"example4@example.com\",\r\n    \"password\": \"password\"\r\n}",
+					"raw": "{\r\n    \"email\": \"example@example.com\",\r\n    \"password\": \"password\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -86,34 +86,6 @@
 						"auth",
 						"login",
 						"client"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "generateToken",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"m.petraccini@hotmail.com\",\r\n    \"password\": \"password\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/auth/generate/token",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"auth",
-						"generate",
-						"token"
 					]
 				}
 			},
@@ -170,6 +142,65 @@
 						"auth",
 						"register",
 						"client"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "generateToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"m.petraccini@hotmail.com\",\r\n    \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/auth/generate/token",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"generate",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validateToken",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtLnBldHJhY2NpbmlAaG90bWFpbC5jb20iLCJpYXQiOjE3MDU1MDYwOTAsImV4cCI6MTcwNTUwNzg5MH0.wNpb_e8SQBnL506rhxgN3ru18aQ3PoZjmcUAODLcQAo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/auth/validate/token?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtLnBldHJhY2NpbmlAaG90bWFpbC5jb20iLCJpYXQiOjE3MDU1MDI1NDMsImV4cCI6MTcwNTUwNDM0M30.rq9LylC0yyme9K8Srq5YVI0OfKhHglo8pW1jEgwGCS8",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"validate",
+						"token"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtLnBldHJhY2NpbmlAaG90bWFpbC5jb20iLCJpYXQiOjE3MDU1MDI1NDMsImV4cCI6MTcwNTUwNDM0M30.rq9LylC0yyme9K8Srq5YVI0OfKhHglo8pW1jEgwGCS8"
+						}
 					]
 				}
 			},

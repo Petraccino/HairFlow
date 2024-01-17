@@ -1,4 +1,4 @@
-package it.hair.flow.conf;
+package it.hair.flow.filter;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -10,7 +10,12 @@ import org.springframework.stereotype.Component;
 public class RouteValidator {
 
  	public static final List<String> openApiEndpoints = List.of(
-            "/client",
+            "/auth/register/user",
+            "/auth/login/user",
+            "/auth/login/client",
+            "/auth/register/client",
+            "/auth/login/admin",
+            "/auth/generate/token",
             "/eureka"
 	    );
 

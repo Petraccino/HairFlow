@@ -6,11 +6,15 @@ spring:
          uri: lb://HAIRFLOW-CLIENT
          predicates:
            - Path=/client/**
+         filters:
+           - AuthenticationFilter
            
        - id: HairFlow-user
          uri: lb://HAIRFLOW-USER
          predicates:
            - Path=/user/**
+         filters:
+           - AuthenticationFilter
            
        - id: HairFlow-Auth
          uri: lb://HAIRFLOW-AUTH
