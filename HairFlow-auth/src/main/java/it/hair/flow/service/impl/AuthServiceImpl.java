@@ -36,8 +36,9 @@ public class AuthServiceImpl implements AuthService{
 
 	@Override
 	public Utente loginUser(String email, String password) {
-		 String encodedPassword = passwordEncoder.encode(password);
-		return utenteRepository.findByEmailAndPassword(email, encodedPassword).orElseThrow(()-> new BadCredentialsException("User not found"));
+		 return utenteRepository.findByEmail(email)
+		            .filter(utente -> passwordEncoder.matches(password, utente.getPassword()))
+		            .orElseThrow(() -> new BadCredentialsException("User not found"));
 	}
 
 	@Override
@@ -48,12 +49,16 @@ public class AuthServiceImpl implements AuthService{
 
 	@Override
 	public Cliente loginClient(String email, String password) {
-		return clienteRepository.findByEmailAndPassword(email, password).orElseThrow(()-> new BadCredentialsException("Client not found"));
+		return clienteRepository.findByEmail(email)
+	            .filter(cliente -> passwordEncoder.matches(password, cliente.getPassword()))
+	            .orElseThrow(() -> new BadCredentialsException("Client not found"));
 	}
 
 	@Override
 	public Admin loginAdmin(String email, String password) {
-		return adminRepository.findByEmailAndPassword(email, password).orElseThrow(()-> new BadCredentialsException("Admin not found"));
+		return adminRepository.findByEmail(email)
+	            .filter(admin -> passwordEncoder.matches(password, admin.getPassword()))
+	            .orElseThrow(() -> new BadCredentialsException("Admin not found"));
 	}
 
 	@Override
