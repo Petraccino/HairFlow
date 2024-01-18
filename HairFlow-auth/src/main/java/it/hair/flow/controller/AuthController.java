@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.hair.flow.dto.AdminDTO;
 import it.hair.flow.dto.AuthRequest;
-import it.hair.flow.entity.Admin;
+import it.hair.flow.dto.ClienteDTO;
+import it.hair.flow.dto.UtenteDTO;
 import it.hair.flow.entity.Cliente;
 import it.hair.flow.entity.Utente;
 import it.hair.flow.service.AuthService;
@@ -29,27 +31,27 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 	
 	@PostMapping("/register/user")
-    public Utente registerUser(@RequestBody Utente utente) {
+    public UtenteDTO registerUser(@RequestBody Utente utente) {
         return authService.registerUser(utente);
     }
 	
 	@PostMapping("/login/user")
-    public Utente loginUser(@RequestBody AuthRequest authRequest) {
+    public UtenteDTO loginUser(@RequestBody AuthRequest authRequest) {
         return authService.loginUser(authRequest.getEmail(), authRequest.getPassword());
     }
 	
 	@PostMapping("/register/client")
-    public Cliente registerClient(@RequestBody Cliente cliente) {
+    public ClienteDTO registerClient(@RequestBody Cliente cliente) {
         return authService.registerClient(cliente);
     }
 	
 	@PostMapping("/login/client")
-    public Cliente loginClient(@RequestBody AuthRequest authRequest) {
+    public ClienteDTO loginClient(@RequestBody AuthRequest authRequest) {
         return authService.loginClient(authRequest.getEmail(), authRequest.getPassword());
     }
 	
 	@PostMapping("/login/admin")
-    public Admin loginAdmin(@RequestBody AuthRequest authRequest) {
+    public AdminDTO loginAdmin(@RequestBody AuthRequest authRequest) {
         return authService.loginAdmin(authRequest.getEmail(), authRequest.getPassword());
     }
 	

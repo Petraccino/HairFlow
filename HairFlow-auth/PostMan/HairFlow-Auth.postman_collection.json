@@ -182,12 +182,12 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtLnBldHJhY2NpbmlAaG90bWFpbC5jb20iLCJpYXQiOjE3MDU1MDYwOTAsImV4cCI6MTcwNTUwNzg5MH0.wNpb_e8SQBnL506rhxgN3ru18aQ3PoZjmcUAODLcQAo",
+						"value": "Bearer {{bearer}}",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "{{url}}/auth/validate/token?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtLnBldHJhY2NpbmlAaG90bWFpbC5jb20iLCJpYXQiOjE3MDU1MDI1NDMsImV4cCI6MTcwNTUwNDM0M30.rq9LylC0yyme9K8Srq5YVI0OfKhHglo8pW1jEgwGCS8",
+					"raw": "{{url}}/auth/validate/token?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtLnBldHJhY2NpblAaG90bWFpbC5jb20iLCJpYXQiOjE3MDU2MTQ2NjgsImV4cCI6MTcwNTYxNjQ2OH0.gmfuRRcndqw-sSgoExAdE2p-rnExjOZNIiuCD4Rjrw8",
 					"host": [
 						"{{url}}"
 					],
@@ -199,7 +199,7 @@
 					"query": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtLnBldHJhY2NpbmlAaG90bWFpbC5jb20iLCJpYXQiOjE3MDU1MDI1NDMsImV4cCI6MTcwNTUwNDM0M30.rq9LylC0yyme9K8Srq5YVI0OfKhHglo8pW1jEgwGCS8"
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtLnBldHJhY2NpblAaG90bWFpbC5jb20iLCJpYXQiOjE3MDU2MTQ2NjgsImV4cCI6MTcwNTYxNjQ2OH0.gmfuRRcndqw-sSgoExAdE2p-rnExjOZNIiuCD4Rjrw8"
 						}
 					]
 				}

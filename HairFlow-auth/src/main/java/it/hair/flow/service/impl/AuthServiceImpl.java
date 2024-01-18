@@ -1,10 +1,14 @@
 package it.hair.flow.service.impl;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import it.hair.flow.dto.AdminDTO;
+import it.hair.flow.dto.ClienteDTO;
+import it.hair.flow.dto.UtenteDTO;
 import it.hair.flow.entity.Admin;
 import it.hair.flow.entity.Cliente;
 import it.hair.flow.entity.Utente;
@@ -25,41 +29,45 @@ public class AuthServiceImpl implements AuthService{
     private PasswordEncoder passwordEncoder;
     @Autowired
     private JwtService jwtService;
+    @Autowired
+    private ModelMapper modelMapper;
 	
 	@Override
-	public Utente registerUser(Utente utente) {
+	public UtenteDTO registerUser(Utente utente) {
 		utente.setPassword(passwordEncoder.encode(utente.getPassword()));
-		return credentialUtenteRepository.save(utente);
+        UtenteDTO utenteDTO = modelMapper.map(credentialUtenteRepository.save(utente), UtenteDTO.class);
+        return utenteDTO;
 	}
 
 	@Override
-	public Utente loginUser(String email, String password) {
+	public UtenteDTO loginUser(String email, String password) {
 		 Utente utente = credentialUtenteRepository.findUtenteByEmail(email)
-		            .orElseThrow(() -> new RuntimeException("User not found"));
-		 if (!passwordEncoder.matches(password, utente.getPassword())) {
-		        throw new RuntimeException("Invalid password");
-		    }
-		    return utente;
+				 .filter(u -> passwordEncoder.matches(password, u.getPassword()))
+				 .orElseThrow(() -> new BadCredentialsException("Client not found"));
+		 return modelMapper.map(utente, UtenteDTO.class); 
 	}
 
 	@Override
-	public Cliente registerClient(Cliente cliente) {
-		cliente.setPassword(passwordEncoder.encode(cliente.getPassword()));
-		return credentialClienteRepository.save(cliente);
+	public ClienteDTO registerClient(Cliente cliente) {
+		 cliente.setPassword(passwordEncoder.encode(cliente.getPassword()));
+	        ClienteDTO clienteDTO = modelMapper.map(credentialClienteRepository.save(cliente), ClienteDTO.class);
+	        return clienteDTO;
 	}
 
 	@Override
-	public Cliente loginClient(String email, String password) {
-		return credentialClienteRepository.findClienteByEmail(email)
-	            .filter(cliente -> passwordEncoder.matches(password, cliente.getPassword()))
-	            .orElseThrow(() -> new BadCredentialsException("Client not found"));
+	public ClienteDTO loginClient(String email, String password) {
+		Cliente cliente = credentialClienteRepository.findClienteByEmail(email)
+                .filter(c -> passwordEncoder.matches(password, c.getPassword()))
+                .orElseThrow(() -> new BadCredentialsException("Client not found"));
+        return modelMapper.map(cliente, ClienteDTO.class);
 	}
 
 	@Override
-	public Admin loginAdmin(String email, String password) {
-		return credentialAdminRepository.findAdminByEmail(email)
-	            .filter(admin -> passwordEncoder.matches(password, admin.getPassword()))
-	            .orElseThrow(() -> new BadCredentialsException("Admin not found"));
+	public AdminDTO loginAdmin(String email, String password) {
+		Admin admin = credentialAdminRepository.findAdminByEmail(email)
+                .filter(a -> passwordEncoder.matches(password, a.getPassword()))
+                .orElseThrow(() -> new BadCredentialsException("Admin not found"));
+        return modelMapper.map(admin, AdminDTO.class);
 	}
 
 	@Override

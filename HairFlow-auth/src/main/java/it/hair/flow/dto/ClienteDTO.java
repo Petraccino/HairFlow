@@ -21,7 +21,6 @@ public class ClienteDTO implements Serializable {
     private String sesso;
     private LocalDate dataUltimaVisita;
     private OffsetDateTime dataRegistrazione;
-    private String password;
     private Integer grant;
     private List<UtenteDTO> utentes;
 }
