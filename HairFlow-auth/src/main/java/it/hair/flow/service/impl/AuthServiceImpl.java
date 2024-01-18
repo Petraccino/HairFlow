@@ -2,6 +2,7 @@ package it.hair.flow.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -34,9 +35,12 @@ public class AuthServiceImpl implements AuthService{
 
 	@Override
 	public Utente loginUser(String email, String password) {
-		 return credentialUtenteRepository.findUtenteByEmail(email)
-		            .filter(utente -> passwordEncoder.matches(password, utente.getPassword()))
-		            .orElseThrow(() -> new BadCredentialsException("User not found"));
+		 Utente utente = credentialUtenteRepository.findUtenteByEmail(email)
+		            .orElseThrow(() -> new RuntimeException("User not found"));
+		 if (!passwordEncoder.matches(password, utente.getPassword())) {
+		        throw new RuntimeException("Invalid password");
+		    }
+		    return utente;
 	}
 
 	@Override

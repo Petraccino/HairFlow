@@ -11,7 +11,13 @@
 			"name": "findUtentes",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{bearer}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{url}}/user/hair-flow/users",
 					"host": [
@@ -30,7 +36,13 @@
 			"name": "findById",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{bearer}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{url}}/user/hair-flow/user/:id",
 					"host": [
@@ -45,7 +57,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "3"
+							"value": "1"
 						}
 					]
 				}
@@ -56,10 +68,16 @@
 			"name": "updateUser",
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{bearer}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 3,\r\n    \"email\": \"example4@example.com\",\r\n    \"password\": \"$2a$10$r1SvWWKN5xFw7yL8G7ceAOEdEBMuvFvZzcuBWP/BfQQcGR1/i00Ta\",\r\n    \"grant\": 2,\r\n    \"informazioni\": {\r\n        \"id\": 11,\r\n        \"nome\": \"Francesco\",\r\n        \"cognome\": \"Coletti\",\r\n        \"dataNascita\": \"1982-06-08\",\r\n        \"provincia\": \"L'Aquila\",\r\n        \"numeroTelefono\": \"3293266450\",\r\n        \"sesso\": \"M\",\r\n        \"codiceFiscale\": \"FRNCTT82H08A345K\",\r\n        \"dataRegistrazione\": \"2024-01-15T11:28:16Z\"\r\n    }\r\n}",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"email\": \"example@example.com\",\r\n    \"password\": \"$2a$10$r1SvWWKN5xFw7yL8G7ceAOEdEBMuvFvZzcuBWP/BfQQcGR1/i00Ta\",\r\n    \"grant\": 2,\r\n    \"informazioni\": {\r\n        \"id\": 3,\r\n        \"nome\": \"Francesco\",\r\n        \"cognome\": \"Coletti\",\r\n        \"dataNascita\": \"1982-06-08\",\r\n        \"provincia\": \"L'Aquila\",\r\n        \"numeroTelefono\": \"3293266450\",\r\n        \"sesso\": \"M\",\r\n        \"codiceFiscale\": \"FRNCTT82H08A345K\",\r\n        \"dataRegistrazione\": \"2024-01-15T11:28:16Z\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -84,7 +102,13 @@
 			"name": "deleteById",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{bearer}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "",
@@ -109,7 +133,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "3"
+							"value": "12"
 						}
 					]
 				}
