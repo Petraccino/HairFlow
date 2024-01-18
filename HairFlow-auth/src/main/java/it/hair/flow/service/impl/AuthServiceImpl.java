@@ -15,12 +15,6 @@ import it.hair.flow.service.JwtService;
 @Service
 public class AuthServiceImpl implements AuthService{
 	
-//	@Autowired
-//    private AdminRepository adminRepository;
-//	@Autowired
-//    private UtenteRepository utenteRepository;
-//	@Autowired
-//    private ClienteRepository clienteRepository;
 	@Autowired
     private CredentialRepository<Admin, Integer> credentialAdminRepository;
 	@Autowired

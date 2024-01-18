@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.hair.flow.dto.ClienteDTO;
 import it.hair.flow.entity.Cliente;
 import it.hair.flow.service.ClienteService;
 
@@ -34,8 +35,8 @@ public class ClienteController{
 	}
 
 	@PutMapping(value = "/hair-flow/client", produces = MediaType.APPLICATION_JSON_VALUE )
-	public Cliente updateClient(@RequestBody Cliente client) throws Exception {
-		return clienteService.addOrUpdateClient(client);
+	public ClienteDTO updateClient(@RequestBody ClienteDTO client) throws Exception {
+		return clienteService.updateClient(client);
 	}
 
 	@DeleteMapping(value = "/hair-flow/client/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE )

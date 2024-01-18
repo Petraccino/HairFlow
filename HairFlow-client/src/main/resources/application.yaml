@@ -12,7 +12,9 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-
+  jackson:
+    default-property-inclusion: NON_NULL
+      
 eureka:
   client:
     service-url:

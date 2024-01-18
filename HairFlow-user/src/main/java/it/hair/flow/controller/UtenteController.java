@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.hair.flow.dto.UtenteDTO;
 import it.hair.flow.entity.Utente;
 import it.hair.flow.service.UtenteService;
 
@@ -35,8 +36,8 @@ public class UtenteController {
 	}
 
 	@PutMapping(value = "/hair-flow/user", produces = MediaType.APPLICATION_JSON_VALUE )
-	public Utente updateUser(@RequestBody Utente user) throws Exception {
-		return utenteService.addOrUpdateUser(user);
+	public UtenteDTO updateUser(@RequestBody UtenteDTO user) throws Exception {
+		return utenteService.updateUser(user);
 	}
 
 	@DeleteMapping(value = "/hair-flow/user/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE )

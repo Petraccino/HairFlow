@@ -14,6 +14,8 @@ spring:
     properties:
       hibernate:
         #dialect: org.hibernate.dialect.MySQL5Dialect
+  jackson:
+    default-property-inclusion: NON_NULL
 eureka:
   client:
     service-url:

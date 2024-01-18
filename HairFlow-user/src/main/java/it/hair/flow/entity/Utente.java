@@ -3,6 +3,8 @@ package it.hair.flow.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,6 +17,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Data;
 
 @Entity
@@ -30,6 +33,7 @@ public class Utente {
     @Column(nullable = false, unique = true, length = 55, name = "email")
     private String email;
 
+    @Transient
     @Column(nullable = false, length = 150, name = "password")
     private String password;
 
@@ -43,14 +47,14 @@ public class Utente {
     @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinColumn(name = "informazioni_id", unique = true)
     private InformazioniAdminUtente informazioni;
-
-
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
     		name = "utente_cliente",
     		joinColumns = @JoinColumn(name = "utente_id"),
     		inverseJoinColumns = @JoinColumn(name = "cliente_id")
     		)
+    @JsonManagedReference
     private List<Cliente> clientes = new ArrayList<>();
 	
 }

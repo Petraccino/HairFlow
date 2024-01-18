@@ -4,9 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.hair.flow.dto.ClienteDTO;
 import it.hair.flow.entity.Cliente;
 import it.hair.flow.repository.ClienteRepository;
 import it.hair.flow.service.ClienteService;
@@ -16,10 +18,12 @@ public class ClienteServiceImpl implements ClienteService{
 	
 	@Autowired
 	private ClienteRepository clienteRepository;
+	@Autowired
+	private ModelMapper modelMapper;
 
 	@Override
 	public Cliente findById(Integer id) throws Exception {
-		Cliente client = clienteRepository.findById(id).orElseThrow(()-> new Exception("Not found post Client"));
+		Cliente client = clienteRepository.findById(id).orElseThrow(()-> new Exception("Not found Client"));
 		return client;
 	}
 
@@ -33,14 +37,14 @@ public class ClienteServiceImpl implements ClienteService{
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Cliente addOrUpdateClient(Cliente client) throws Exception {
-		Cliente clientAddOrUpdate = clienteRepository.save(client);
-		if (!clientAddOrUpdate.getNome().equals(client.getNome()) ) {
-			throw new Exception("Insert or update for client failed");
-		} else {
-			return clientAddOrUpdate;
-		}
+	public ClienteDTO updateClient(ClienteDTO client) throws Exception {
+		Cliente cliDaAggiornare = findById(client.getId());
+		client.setUtentes(modelMapper.map(cliDaAggiornare.getUtentes(), List.class));
+		Cliente clientUpdate = modelMapper.map(client, Cliente.class);
+		clienteRepository.save(clientUpdate);
+		return modelMapper.map(clientUpdate, ClienteDTO.class);
 	}
 
 	@Override

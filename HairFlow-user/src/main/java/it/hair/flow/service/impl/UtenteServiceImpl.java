@@ -4,9 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.hair.flow.dto.UtenteDTO;
+import it.hair.flow.entity.InformazioniAdminUtente;
 import it.hair.flow.entity.Utente;
 import it.hair.flow.repository.UtenteRepository;
 import it.hair.flow.service.UtenteService;
@@ -16,6 +19,8 @@ public class UtenteServiceImpl implements UtenteService{
 	
 	@Autowired
 	private UtenteRepository utenteRepository;
+	@Autowired
+	private ModelMapper modelMapper;
 
 	@Override
 	public Utente findById(Integer id) throws Exception {
@@ -34,13 +39,11 @@ public class UtenteServiceImpl implements UtenteService{
 	}
 
 	@Override
-	public Utente addOrUpdateUser(Utente utente) throws Exception {
-		Utente utenteAddOrUpdate = utenteRepository.save(utente);
-		if (!utenteAddOrUpdate.getInformazioni().getNome().equals(utente.getInformazioni().getNome()) ) {
-			throw new Exception("Insert or update for utente failed");
-		} else {
-			return utenteAddOrUpdate;
-		}
+	public UtenteDTO updateUser(UtenteDTO utente) throws Exception {
+		Utente uteDaAggiornare = findById(utente.getId());
+		uteDaAggiornare.setInformazioni(modelMapper.map(utente.getInformazioni(), InformazioniAdminUtente.class));
+		utenteRepository.save(uteDaAggiornare);
+		return modelMapper.map(uteDaAggiornare, UtenteDTO.class);
 	}
 
 	@Override
