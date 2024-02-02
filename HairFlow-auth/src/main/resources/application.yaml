@@ -26,3 +26,14 @@ config:
 
 server:
   port: 9898
+  servlet:
+    context-path: /
+    
+openapi:
+ service:
+   url: lb://HAIRFLOW-GATEWAY
+springdoc:
+ api-docs:
+   path: /auth/v3/api-docs
+ swagger-ui: 
+   path: /auth/swagger-ui.html

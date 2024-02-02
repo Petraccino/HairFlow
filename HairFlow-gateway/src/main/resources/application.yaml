@@ -25,7 +25,32 @@ spring:
  application:
    name: HAIRFLOW-GATEWAY
 
+server:
+  servlet:
+    context-path: /
 eureka:
   client:
     service-url:
       defaultZone : http://localhost:8761/eureka/
+
+springdoc:
+  enable-native-support: true
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - url: /v3/api-docs
+        name: HAIRFLOW-GATEWAY
+        display-name: HAIRFLOW-GATEWAY
+      - url: /user/v3/api-docs
+        name: HAIRFLOW-USER
+        display-name: HAIRFLOW-USER
+      - url: /client/v3/api-docs
+        name: HAIRFLOW-CLIENT
+        display-name: HAIRFLOW-CLIENT
+      - url: /auth/v3/api-docs
+        name: HAIRFLOW-AUTH
+        display-name: HAIRFLOW-AUTH

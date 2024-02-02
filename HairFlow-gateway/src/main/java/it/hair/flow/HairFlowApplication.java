@@ -4,8 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
+
 @SpringBootApplication
 @EnableDiscoveryClient
+@OpenAPIDefinition(info = @Info(title = "Hair Flow OpenApi", version = "1.0", description = "Documentation microservices Hair Flow"))
 public class HairFlowApplication {
 
 	public static void main(String[] args) {
