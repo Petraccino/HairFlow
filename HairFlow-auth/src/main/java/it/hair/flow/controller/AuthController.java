@@ -16,8 +16,6 @@ import it.hair.flow.dto.AdminDTO;
 import it.hair.flow.dto.AuthRequest;
 import it.hair.flow.dto.ClienteDTO;
 import it.hair.flow.dto.UtenteDTO;
-import it.hair.flow.entity.Cliente;
-import it.hair.flow.entity.Utente;
 import it.hair.flow.service.AuthService;
 
 @RestController
@@ -31,7 +29,7 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 	
 	@PostMapping("/register/user")
-    public UtenteDTO registerUser(@RequestBody Utente utente) {
+    public UtenteDTO registerUser(@RequestBody UtenteDTO utente) {
         return authService.registerUser(utente);
     }
 	
@@ -41,7 +39,7 @@ public class AuthController {
     }
 	
 	@PostMapping("/register/client")
-    public ClienteDTO registerClient(@RequestBody Cliente cliente) {
+    public ClienteDTO registerClient(@RequestBody ClienteDTO cliente) {
         return authService.registerClient(cliente);
     }
 	

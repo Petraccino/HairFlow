@@ -7,6 +7,7 @@ public class UtenteDTO {
 	
 	private Integer id;
  	private String email;
+ 	private String password;
     private Integer grant;
     private InformazioniAdminUtenteDTO informazioni;
 

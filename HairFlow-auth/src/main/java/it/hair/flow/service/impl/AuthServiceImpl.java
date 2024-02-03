@@ -33,9 +33,10 @@ public class AuthServiceImpl implements AuthService{
     private ModelMapper modelMapper;
 	
 	@Override
-	public UtenteDTO registerUser(Utente utente) {
+	public UtenteDTO registerUser(UtenteDTO utente) {
 		utente.setPassword(passwordEncoder.encode(utente.getPassword()));
-        UtenteDTO utenteDTO = modelMapper.map(credentialUtenteRepository.save(utente), UtenteDTO.class);
+		Utente register = modelMapper.map(utente, Utente.class);
+        UtenteDTO utenteDTO = modelMapper.map(credentialUtenteRepository.save(register), UtenteDTO.class);
         return utenteDTO;
 	}
 
@@ -43,15 +44,16 @@ public class AuthServiceImpl implements AuthService{
 	public UtenteDTO loginUser(String email, String password) {
 		 Utente utente = credentialUtenteRepository.findUtenteByEmail(email)
 				 .filter(u -> passwordEncoder.matches(password, u.getPassword()))
-				 .orElseThrow(() -> new BadCredentialsException("Client not found"));
+				 .orElseThrow(() -> new BadCredentialsException("User not found"));
 		 return modelMapper.map(utente, UtenteDTO.class); 
 	}
 
 	@Override
-	public ClienteDTO registerClient(Cliente cliente) {
-		 cliente.setPassword(passwordEncoder.encode(cliente.getPassword()));
-	        ClienteDTO clienteDTO = modelMapper.map(credentialClienteRepository.save(cliente), ClienteDTO.class);
-	        return clienteDTO;
+	public ClienteDTO registerClient(ClienteDTO cliente) {
+		cliente.setPassword(passwordEncoder.encode(cliente.getPassword()));
+		Cliente register = modelMapper.map(cliente, Cliente.class);
+        ClienteDTO clienteDTO = modelMapper.map(credentialClienteRepository.save(register), ClienteDTO.class);
+        return clienteDTO;
 	}
 
 	@Override

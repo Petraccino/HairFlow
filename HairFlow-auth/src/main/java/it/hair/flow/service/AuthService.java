@@ -3,14 +3,12 @@ package it.hair.flow.service;
 import it.hair.flow.dto.AdminDTO;
 import it.hair.flow.dto.ClienteDTO;
 import it.hair.flow.dto.UtenteDTO;
-import it.hair.flow.entity.Cliente;
-import it.hair.flow.entity.Utente;
 
 public interface AuthService {
 	
-	UtenteDTO registerUser(Utente utente);
+	UtenteDTO registerUser(UtenteDTO utente);
 	UtenteDTO loginUser(String email, String password);
-	ClienteDTO registerClient(Cliente cliente);
+	ClienteDTO registerClient(ClienteDTO cliente);
 	ClienteDTO loginClient(String email, String password);
 	AdminDTO loginAdmin(String email, String password);
 	String generateToken(String email);
