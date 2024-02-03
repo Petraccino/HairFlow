@@ -1,4 +1,4 @@
-package it.hair.flow.filter;
+package it.hair.flow.exception;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -6,6 +6,8 @@ import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFac
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 
+import it.hair.flow.filter.InvalidTokenException;
+import it.hair.flow.filter.RouteValidator;
 import it.hair.flow.util.JwtUtil;
 
 
@@ -27,7 +29,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
 		return ((exchange, chain) -> {
             if (validator.isSecured.test(exchange.getRequest())) {
                 if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
-                    throw new RuntimeException("Missing authorization header");
+                    throw new InvalidTokenException("Missing authorization header", exchange.getRequest().getURI().getPath());
                 }
 
                 String authHeader = exchange.getRequest().getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
@@ -37,7 +39,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                 try {
                     jwtUtil.validateToken(authHeader);
                 } catch (Exception e) {
-                	throw new RuntimeException("Unauthorized access to application");
+                	throw new InvalidTokenException("Unauthorized access to application", authHeader, exchange.getRequest().getURI().getPath());
                 }
             }
             return chain.filter(exchange);
