@@ -41,7 +41,20 @@ public class AuthConfig {
             new AntPathRequestMatcher("/v3/openapi.yaml"),
             new AntPathRequestMatcher("/swagger-ui/**"),
             new AntPathRequestMatcher("/actuator/**"),
-            new AntPathRequestMatcher("/config.json")
+            new AntPathRequestMatcher("/config.json"),
+            new AntPathRequestMatcher("**/auth/swagger-ui.html"),
+            new AntPathRequestMatcher("/auth/swagger-ui**"),
+            new AntPathRequestMatcher("*/auth/swagger-ui/*"),
+            new AntPathRequestMatcher("/auth/swagger-ui.html"),
+            new AntPathRequestMatcher("*/auth/swagger-ui.html/*"),
+            new AntPathRequestMatcher("*/auth/swagger-ui/index.html/*"),
+            new AntPathRequestMatcher("/auth/swagger-ui/index.html/**"),
+            new AntPathRequestMatcher("/auth/v3/api-docs/**"),
+            new AntPathRequestMatcher("/auth/v3/api-docs**"),
+            new AntPathRequestMatcher("/auth/v3/api-docs.yaml"),
+            new AntPathRequestMatcher("/auth/v3/openapi.yaml"),
+            new AntPathRequestMatcher("/auth/swagger-ui/**")
+            
     );
 	
 	@Bean
