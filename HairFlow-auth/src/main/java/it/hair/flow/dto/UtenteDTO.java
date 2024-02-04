@@ -10,5 +10,4 @@ public class UtenteDTO {
  	private String password;
     private Integer grant;
     private InformazioniAdminUtenteDTO informazioni;
-
 }

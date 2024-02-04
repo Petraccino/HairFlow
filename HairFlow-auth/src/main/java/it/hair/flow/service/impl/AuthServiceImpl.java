@@ -2,6 +2,7 @@ package it.hair.flow.service.impl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,13 +32,20 @@ public class AuthServiceImpl implements AuthService{
     @Autowired
     private JwtService jwtService;
     @Autowired
+    @Qualifier("modelMapper")
     private ModelMapper modelMapper;
+    @Autowired
+    @Qualifier("modelMapperSkypPasswordCliente")
+    private ModelMapper modelMapperSkypPasswordCliente;
+    @Autowired
+    @Qualifier("modelMapperSkypPasswordUtente")
+    private ModelMapper modelMapperSkypPasswordUtente;
 	
 	@Override
 	public UtenteDTO registerUser(UtenteDTO utente) {
 		utente.setPassword(passwordEncoder.encode(utente.getPassword()));
 		Utente register = modelMapper.map(utente, Utente.class);
-        UtenteDTO utenteDTO = modelMapper.map(credentialUtenteRepository.save(register), UtenteDTO.class);
+        UtenteDTO utenteDTO = modelMapperSkypPasswordUtente.map(credentialUtenteRepository.save(register), UtenteDTO.class);
         return utenteDTO;
 	}
 
@@ -46,14 +54,14 @@ public class AuthServiceImpl implements AuthService{
 		 Utente utente = credentialUtenteRepository.findUtenteByEmail(email)
 				 .filter(u -> passwordEncoder.matches(password, u.getPassword()))
 				 .orElseThrow(() -> new BadCredentialsException(Constant.BAD_CREDENTIALS_EXCEPTION + email));
-		 return modelMapper.map(utente, UtenteDTO.class); 
+		 return modelMapperSkypPasswordUtente.map(utente, UtenteDTO.class); 
 	}
 
 	@Override
 	public ClienteDTO registerClient(ClienteDTO cliente) {
 		cliente.setPassword(passwordEncoder.encode(cliente.getPassword()));
 		Cliente register = modelMapper.map(cliente, Cliente.class);
-        ClienteDTO clienteDTO = modelMapper.map(credentialClienteRepository.save(register), ClienteDTO.class);
+        ClienteDTO clienteDTO = modelMapperSkypPasswordCliente.map(credentialClienteRepository.save(register), ClienteDTO.class);
         return clienteDTO;
 	}
 
@@ -62,7 +70,7 @@ public class AuthServiceImpl implements AuthService{
 		Cliente cliente = credentialClienteRepository.findClienteByEmail(email)
                 .filter(c -> passwordEncoder.matches(password, c.getPassword()))
                 .orElseThrow(() -> new BadCredentialsException(Constant.BAD_CREDENTIALS_EXCEPTION + email));
-        return modelMapper.map(cliente, ClienteDTO.class);
+        return modelMapperSkypPasswordCliente.map(cliente, ClienteDTO.class);
 	}
 
 	@Override
