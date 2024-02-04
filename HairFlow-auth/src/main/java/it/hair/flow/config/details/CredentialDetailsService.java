@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import it.hair.flow.costant.Constant;
 import it.hair.flow.entity.Admin;
 import it.hair.flow.entity.Cliente;
 import it.hair.flow.entity.Utente;
@@ -29,13 +30,13 @@ public class CredentialDetailsService implements UserDetailsService {
         Optional<Utente> utente = utenteRepository.findUtenteByEmail(email);
         Optional<Cliente> cliente = clienteRepository.findClienteByEmail(email);
         if (admin.isPresent()) {
-        	return admin.map(CredentialDetails::new).orElseThrow(() -> new UsernameNotFoundException("Admin not found with email :" + email));
+        	return admin.map(CredentialDetails::new).orElseThrow(() -> new UsernameNotFoundException(Constant.ADMIN_USURNAME_NOT_FOUND_EXCEPTION + email));
         } else if (utente.isPresent()) {
-        	return utente.map(CredentialDetails::new).orElseThrow(() -> new UsernameNotFoundException("User not found with email :" + email));
+        	return utente.map(CredentialDetails::new).orElseThrow(() -> new UsernameNotFoundException(Constant.USER_USURNAME_NOT_FOUND_EXCEPTION + email));
         } else if (cliente.isPresent()) {
-        	return cliente.map(CredentialDetails::new).orElseThrow(() -> new UsernameNotFoundException("Client not found with email: :" + email));
+        	return cliente.map(CredentialDetails::new).orElseThrow(() -> new UsernameNotFoundException(Constant.CLIENT_USURNAME_NOT_FOUND_EXCEPTION + email));
         } else {
-            throw new UsernameNotFoundException("No user types found with this email:" + email);
+            throw new UsernameNotFoundException(Constant.GENERIC_USURNAME_NOT_FOUND_EXCEPTION + email);
         }
 	}
 

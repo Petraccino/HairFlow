@@ -6,17 +6,19 @@ import java.util.function.Predicate;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 
+import it.hair.flow.constant.Constant;
+
 @Component
 public class RouteValidator {
 
  	public static final List<String> openApiEndpoints = List.of(
-            "/auth/register/user",
-            "/auth/login/user",
-            "/auth/login/client",
-            "/auth/register/client",
-            "/auth/login/admin",
-            "/auth/generate/token",
-            "/eureka"
+            Constant.AUTH_BASE_PATH + Constant.REGISTER_USER,
+            Constant.AUTH_BASE_PATH + Constant.LOGIN_USER,
+            Constant.AUTH_BASE_PATH + Constant.LOGIN_CLIENT,
+            Constant.AUTH_BASE_PATH + Constant.REGISTER_CLIENT,
+            Constant.AUTH_BASE_PATH + Constant.LOGIN_ADMIN,
+            Constant.AUTH_BASE_PATH + Constant.GENERATE_TOKEN,
+            Constant.EUREKA_PATH
 	    );
 
     public Predicate<ServerHttpRequest> isSecured =

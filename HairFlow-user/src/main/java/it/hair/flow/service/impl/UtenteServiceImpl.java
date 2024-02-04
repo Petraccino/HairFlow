@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.hair.flow.constant.Constant;
 import it.hair.flow.dto.UtenteDTO;
 import it.hair.flow.entity.InformazioniAdminUtente;
 import it.hair.flow.entity.Utente;
@@ -24,7 +25,7 @@ public class UtenteServiceImpl implements UtenteService{
 
 	@Override
 	public Utente findById(Integer id) throws Exception {
-		Utente utente = utenteRepository.findById(id).orElseThrow(()-> new Exception("Not found User"));
+		Utente utente = utenteRepository.findById(id).orElseThrow(()-> new Exception(Constant.USER_NOT_FOUND));
 		return utente;
 	}
 
@@ -32,7 +33,7 @@ public class UtenteServiceImpl implements UtenteService{
 	public List<Utente> findUsers() throws Exception {
 		List<Utente> utentes = utenteRepository.findAll();
 		if(utentes.isEmpty()) {
-			throw new Exception("The list of User is empty");
+			throw new Exception(Constant.USERS_LIST_EMPTY);
 		} else {
 			return utentes;
 		}
@@ -52,7 +53,7 @@ public class UtenteServiceImpl implements UtenteService{
 		Utente utente = findById(id);
 		try {
 			utenteRepository.deleteById(id);
-			map.put("Deletion: "+utente.getInformazioni().getNome(), Boolean.TRUE);
+			map.put(Constant.DELETION_USER + utente.getInformazioni().getNome(), Boolean.TRUE);
 		} catch(IllegalArgumentException iae) {
 			map.put("Deletion", Boolean.FALSE);
 			iae.printStackTrace();

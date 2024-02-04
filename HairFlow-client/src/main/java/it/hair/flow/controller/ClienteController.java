@@ -13,33 +13,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.hair.flow.costant.Constant;
 import it.hair.flow.dto.ClienteDTO;
 import it.hair.flow.entity.Cliente;
 import it.hair.flow.service.ClienteService;
 
 @RestController
-@RequestMapping("/client")
+@RequestMapping(Constant.REQUEST_MAPPING_CLIENT)
 public class ClienteController{
 	
 	@Autowired
 	private ClienteService clienteService;
 
-	@GetMapping(value = "/hair-flow/client/{id}", produces = MediaType.APPLICATION_JSON_VALUE )
+	@GetMapping(value = Constant.HAIR_FLOW_PATH + Constant.CLIENT_PATH + Constant.ID_PATH_VARIABLE, produces = MediaType.APPLICATION_JSON_VALUE )
 	public Cliente findById(@PathVariable Integer id) throws Exception {
 		return clienteService.findById(id);
 	}
 
-	@GetMapping(value = "/hair-flow/clients", produces = MediaType.APPLICATION_JSON_VALUE )
+	@GetMapping(value = Constant.HAIR_FLOW_PATH + Constant.CLIENTS_PATH , produces = MediaType.APPLICATION_JSON_VALUE )
 	public List<Cliente> findClients() throws Exception {
 		return clienteService.findClients();
 	}
 
-	@PutMapping(value = "/hair-flow/client", produces = MediaType.APPLICATION_JSON_VALUE )
+	@PutMapping(value = Constant.HAIR_FLOW_PATH + Constant.CLIENT_PATH + "", produces = MediaType.APPLICATION_JSON_VALUE )
 	public ClienteDTO updateClient(@RequestBody ClienteDTO client) throws Exception {
 		return clienteService.updateClient(client);
 	}
 
-	@DeleteMapping(value = "/hair-flow/client/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE )
+	@DeleteMapping(value = Constant.HAIR_FLOW_PATH + Constant.CLIENT_PATH + Constant.DELETE_PATH + Constant.ID_PATH_VARIABLE, produces = MediaType.APPLICATION_JSON_VALUE )
 	public Map<String, Boolean> deleteById(@PathVariable Integer id) throws Exception {
 		return clienteService.deleteById(id);
 	}
