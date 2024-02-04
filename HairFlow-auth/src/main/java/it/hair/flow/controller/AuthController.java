@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.hair.flow.costant.Constant;
 import it.hair.flow.dto.AdminDTO;
 import it.hair.flow.dto.AuthRequest;
 import it.hair.flow.dto.ClienteDTO;
@@ -19,7 +20,7 @@ import it.hair.flow.dto.UtenteDTO;
 import it.hair.flow.service.AuthService;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping(Constant.REQUEST_MAPPING_AUTH)
 public class AuthController {
 	
 	@Autowired
@@ -28,42 +29,42 @@ public class AuthController {
     @Autowired
     private AuthenticationManager authenticationManager;
 	
-	@PostMapping("/register/user")
+	@PostMapping(Constant.REGISTER_USER)
     public UtenteDTO registerUser(@RequestBody UtenteDTO utente) {
         return authService.registerUser(utente);
     }
 	
-	@PostMapping("/login/user")
+	@PostMapping(Constant.LOGIN_USER)
     public UtenteDTO loginUser(@RequestBody AuthRequest authRequest) {
         return authService.loginUser(authRequest.getEmail(), authRequest.getPassword());
     }
 	
-	@PostMapping("/register/client")
+	@PostMapping(Constant.REGISTER_CLIENT)
     public ClienteDTO registerClient(@RequestBody ClienteDTO cliente) {
         return authService.registerClient(cliente);
     }
 	
-	@PostMapping("/login/client")
+	@PostMapping(Constant.LOGIN_CLIENT)
     public ClienteDTO loginClient(@RequestBody AuthRequest authRequest) {
         return authService.loginClient(authRequest.getEmail(), authRequest.getPassword());
     }
 	
-	@PostMapping("/login/admin")
+	@PostMapping(Constant.LOGIN_ADMIN)
     public AdminDTO loginAdmin(@RequestBody AuthRequest authRequest) {
         return authService.loginAdmin(authRequest.getEmail(), authRequest.getPassword());
     }
 	
-	@PostMapping("/generate/token")
+	@PostMapping(Constant.GENERATE_TOKEN)
     public String generateToken(@RequestBody AuthRequest authRequest) {
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword()));
         if (authenticate.isAuthenticated()) {
             return authService.generateToken(authRequest.getEmail());
         } else {
-            throw new BadCredentialsException("Bad credentials");
+            throw new BadCredentialsException(Constant.BAD_CREDENTIALS_EXCEPTION + authRequest.getEmail());
         }
     }
 
-    @GetMapping("/validate/token")
+    @GetMapping(Constant.VALIDATE_TOKEN)
     public String validateToken(@RequestParam String token) {
     	authService.validateToken(token);
     	return token;

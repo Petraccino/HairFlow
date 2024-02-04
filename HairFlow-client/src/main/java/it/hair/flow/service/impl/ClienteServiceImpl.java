@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.hair.flow.costant.Constant;
 import it.hair.flow.dto.ClienteDTO;
 import it.hair.flow.entity.Cliente;
 import it.hair.flow.repository.ClienteRepository;
@@ -23,7 +24,7 @@ public class ClienteServiceImpl implements ClienteService{
 
 	@Override
 	public Cliente findById(Integer id) throws Exception {
-		Cliente client = clienteRepository.findById(id).orElseThrow(()-> new Exception("Not found Client"));
+		Cliente client = clienteRepository.findById(id).orElseThrow(()-> new Exception(Constant.CLIENTS_NOT_FOUND));
 		return client;
 	}
 
@@ -31,13 +32,12 @@ public class ClienteServiceImpl implements ClienteService{
 	public List<Cliente> findClients() throws Exception {
 		List<Cliente> clients = clienteRepository.findAll();
 		if(clients.isEmpty()) {
-			throw new Exception("The list of Client is empty");
+			throw new Exception(Constant.CLIENTS_LIST_EMPTY);
 		} else {
 			return clients;
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public ClienteDTO updateClient(ClienteDTO client) throws Exception {
 		Cliente cliDaAggiornare = findById(client.getId());
@@ -53,7 +53,7 @@ public class ClienteServiceImpl implements ClienteService{
 		Cliente client = findById(id);
 		try {
 			clienteRepository.deleteById(id);
-			map.put("Deletion: "+client.getNome(), Boolean.TRUE);
+			map.put(Constant.DELETION_CLIENT +client.getNome(), Boolean.TRUE);
 		} catch(IllegalArgumentException iae) {
 			map.put("Deletion", Boolean.FALSE);
 			iae.printStackTrace();

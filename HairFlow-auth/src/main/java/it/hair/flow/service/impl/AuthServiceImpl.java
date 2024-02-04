@@ -6,6 +6,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import it.hair.flow.costant.Constant;
 import it.hair.flow.dto.AdminDTO;
 import it.hair.flow.dto.ClienteDTO;
 import it.hair.flow.dto.UtenteDTO;
@@ -44,7 +45,7 @@ public class AuthServiceImpl implements AuthService{
 	public UtenteDTO loginUser(String email, String password) {
 		 Utente utente = credentialUtenteRepository.findUtenteByEmail(email)
 				 .filter(u -> passwordEncoder.matches(password, u.getPassword()))
-				 .orElseThrow(() -> new BadCredentialsException("Credenziali d'accesso non valide per " + email));
+				 .orElseThrow(() -> new BadCredentialsException(Constant.BAD_CREDENTIALS_EXCEPTION + email));
 		 return modelMapper.map(utente, UtenteDTO.class); 
 	}
 
@@ -60,7 +61,7 @@ public class AuthServiceImpl implements AuthService{
 	public ClienteDTO loginClient(String email, String password) {
 		Cliente cliente = credentialClienteRepository.findClienteByEmail(email)
                 .filter(c -> passwordEncoder.matches(password, c.getPassword()))
-                .orElseThrow(() -> new BadCredentialsException("Credenziali d'accesso non valide per " + email));
+                .orElseThrow(() -> new BadCredentialsException(Constant.BAD_CREDENTIALS_EXCEPTION + email));
         return modelMapper.map(cliente, ClienteDTO.class);
 	}
 
@@ -68,7 +69,7 @@ public class AuthServiceImpl implements AuthService{
 	public AdminDTO loginAdmin(String email, String password) {
 		Admin admin = credentialAdminRepository.findAdminByEmail(email)
                 .filter(a -> passwordEncoder.matches(password, a.getPassword()))
-                .orElseThrow(() -> new BadCredentialsException("Credenziali d'accesso non valide per " + email));
+                .orElseThrow(() -> new BadCredentialsException(Constant.BAD_CREDENTIALS_EXCEPTION + email));
         return modelMapper.map(admin, AdminDTO.class);
 	}
 

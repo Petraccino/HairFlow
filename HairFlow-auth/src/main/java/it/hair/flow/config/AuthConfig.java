@@ -17,6 +17,7 @@ import org.springframework.security.web.util.matcher.OrRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import it.hair.flow.config.details.CredentialDetailsService;
+import it.hair.flow.costant.Constant;
 
 
 @Configuration
@@ -24,36 +25,36 @@ import it.hair.flow.config.details.CredentialDetailsService;
 public class AuthConfig {
 	
 	private static final RequestMatcher PUBLIC_URLS = new OrRequestMatcher(
-			new AntPathRequestMatcher("/auth/register/**"),
-			new AntPathRequestMatcher("/auth/login/**"),
-			new AntPathRequestMatcher("/auth/generate/token"),
-			new AntPathRequestMatcher("/auth/validate/token"),
-            new AntPathRequestMatcher("**/swagger-ui.html"),
-            new AntPathRequestMatcher("/swagger-ui**"),
-            new AntPathRequestMatcher("*/swagger-ui/*"),
-            new AntPathRequestMatcher("/swagger-ui.html"),
-            new AntPathRequestMatcher("*/swagger-ui.html/*"),
-            new AntPathRequestMatcher("*/swagger-ui/index.html/*"),
-            new AntPathRequestMatcher("/swagger-ui/index.html/**"),
-            new AntPathRequestMatcher("/v3/api-docs/**"),
-            new AntPathRequestMatcher("/v3/api-docs**"),
-            new AntPathRequestMatcher("/v3/api-docs.yaml"),
-            new AntPathRequestMatcher("/v3/openapi.yaml"),
-            new AntPathRequestMatcher("/swagger-ui/**"),
-            new AntPathRequestMatcher("/actuator/**"),
-            new AntPathRequestMatcher("/config.json"),
-            new AntPathRequestMatcher("**/auth/swagger-ui.html"),
-            new AntPathRequestMatcher("/auth/swagger-ui**"),
-            new AntPathRequestMatcher("*/auth/swagger-ui/*"),
-            new AntPathRequestMatcher("/auth/swagger-ui.html"),
-            new AntPathRequestMatcher("*/auth/swagger-ui.html/*"),
-            new AntPathRequestMatcher("*/auth/swagger-ui/index.html/*"),
-            new AntPathRequestMatcher("/auth/swagger-ui/index.html/**"),
-            new AntPathRequestMatcher("/auth/v3/api-docs/**"),
-            new AntPathRequestMatcher("/auth/v3/api-docs**"),
-            new AntPathRequestMatcher("/auth/v3/api-docs.yaml"),
-            new AntPathRequestMatcher("/auth/v3/openapi.yaml"),
-            new AntPathRequestMatcher("/auth/swagger-ui/**")
+			new AntPathRequestMatcher(Constant.REQUEST_MAPPING_AUTH + Constant.REGISTER_GENERIC),
+			new AntPathRequestMatcher(Constant.REQUEST_MAPPING_AUTH + Constant.LOGIN_GENERIC),
+			new AntPathRequestMatcher(Constant.REQUEST_MAPPING_AUTH + Constant.GENERATE_TOKEN),
+			new AntPathRequestMatcher(Constant.REQUEST_MAPPING_AUTH + Constant.VALIDATE_TOKEN),
+            new AntPathRequestMatcher(Constant.DOUBLE_STAR + Constant.SWAGGER_UI_PATH),
+            new AntPathRequestMatcher(Constant.SWAGGER_UI + Constant.DOUBLE_STAR),
+            new AntPathRequestMatcher(Constant.ONE_STAR + Constant.SWAGGER_UI + Constant.SLASH_STAR),
+            new AntPathRequestMatcher(Constant.SWAGGER_UI_PATH),
+            new AntPathRequestMatcher(Constant.ONE_STAR + Constant.SWAGGER_UI_PATH + Constant.SLASH_STAR),
+            new AntPathRequestMatcher(Constant.ONE_STAR + Constant.SWAGGER_UI + Constant.INDEX_HTML + Constant.ONE_STAR),
+            new AntPathRequestMatcher(Constant.SWAGGER_UI + Constant.INDEX_HTML + Constant.DOUBLE_STAR),
+            new AntPathRequestMatcher(Constant.V3_API_DOCS + Constant.SLASH_DOUBLE_STAR),
+            new AntPathRequestMatcher(Constant.V3_API_DOCS + Constant.DOUBLE_STAR),
+            new AntPathRequestMatcher(Constant.V3_API_DOCS + Constant.YAML),
+            new AntPathRequestMatcher(Constant.V3_OPENAPI_YAML),
+            new AntPathRequestMatcher(Constant.SWAGGER_UI_RESOURCES),
+            new AntPathRequestMatcher(Constant.ACTUATOR_PATH),
+            new AntPathRequestMatcher(Constant.CONFIG_JSON_PATH),
+            new AntPathRequestMatcher(Constant.DOUBLE_STAR + Constant.REQUEST_MAPPING_AUTH + Constant.SWAGGER_UI_PATH),
+            new AntPathRequestMatcher(Constant.REQUEST_MAPPING_AUTH + Constant.SWAGGER_UI + Constant.DOUBLE_STAR),
+            new AntPathRequestMatcher(Constant.ONE_STAR + Constant.REQUEST_MAPPING_AUTH + Constant.SWAGGER_UI + Constant.SLASH_STAR),
+            new AntPathRequestMatcher(Constant.REQUEST_MAPPING_AUTH + Constant.SWAGGER_UI_PATH),
+            new AntPathRequestMatcher(Constant.ONE_STAR + Constant.REQUEST_MAPPING_AUTH + Constant.SWAGGER_UI_PATH + Constant.SLASH_STAR),
+            new AntPathRequestMatcher(Constant.ONE_STAR + Constant.REQUEST_MAPPING_AUTH + Constant.SWAGGER_UI + Constant.INDEX_HTML + Constant.ONE_STAR),
+            new AntPathRequestMatcher(Constant.REQUEST_MAPPING_AUTH + Constant.SWAGGER_UI + Constant.INDEX_HTML + Constant.DOUBLE_STAR),
+            new AntPathRequestMatcher(Constant.REQUEST_MAPPING_AUTH + Constant.V3_API_DOCS + Constant.SLASH_DOUBLE_STAR),
+            new AntPathRequestMatcher(Constant.REQUEST_MAPPING_AUTH + Constant.V3_API_DOCS + Constant.DOUBLE_STAR),
+            new AntPathRequestMatcher(Constant.REQUEST_MAPPING_AUTH + Constant.V3_API_DOCS + Constant.YAML),
+            new AntPathRequestMatcher(Constant.REQUEST_MAPPING_AUTH + Constant.V3_OPENAPI_YAML),
+            new AntPathRequestMatcher(Constant.REQUEST_MAPPING_AUTH + Constant.SWAGGER_UI_RESOURCES)
             
     );
 	

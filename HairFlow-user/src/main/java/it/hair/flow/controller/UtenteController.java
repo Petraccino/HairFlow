@@ -13,34 +13,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.hair.flow.constant.Constant;
 import it.hair.flow.dto.UtenteDTO;
 import it.hair.flow.entity.Utente;
 import it.hair.flow.service.UtenteService;
 
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping(Constant.REQUEST_MAPPING_USER)
 public class UtenteController {
 
 	@Autowired
 	private UtenteService utenteService;
 
-	@GetMapping(value = "/hair-flow/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE )
+	@GetMapping(value = Constant.HAIR_FLOW_PATH + Constant.USER_PATH + Constant.ID_PATH_VARIABLE, produces = MediaType.APPLICATION_JSON_VALUE )
 	public Utente findById(@PathVariable Integer id) throws Exception {
 		return utenteService.findById(id);
 	}
 
-	@GetMapping(value = "/hair-flow/users", produces = MediaType.APPLICATION_JSON_VALUE )
+	@GetMapping(value = Constant.HAIR_FLOW_PATH + Constant.USERS_PATH, produces = MediaType.APPLICATION_JSON_VALUE )
 	public List<Utente> findUsers() throws Exception {
 		return utenteService.findUsers();
 	}
 
-	@PutMapping(value = "/hair-flow/user", produces = MediaType.APPLICATION_JSON_VALUE )
+	@PutMapping(value = Constant.HAIR_FLOW_PATH + Constant.USER_PATH, produces = MediaType.APPLICATION_JSON_VALUE )
 	public UtenteDTO updateUser(@RequestBody UtenteDTO user) throws Exception {
 		return utenteService.updateUser(user);
 	}
 
-	@DeleteMapping(value = "/hair-flow/user/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE )
+	@DeleteMapping(value = Constant.HAIR_FLOW_PATH + Constant.USER_PATH + Constant.DELETE_PATH + Constant.ID_PATH_VARIABLE, produces = MediaType.APPLICATION_JSON_VALUE )
 	public Map<String, Boolean> deleteById(@PathVariable Integer id) throws Exception {
 		return utenteService.deleteById(id);
 	}
