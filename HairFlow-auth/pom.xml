@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.1</version>
+		<version>3.3.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>it.hair.flow</groupId>
@@ -15,7 +15,7 @@
 	<description>Gestione efficiente per i parrucchieri</description>
 	<properties>
 		<java.version>17</java.version>
-		<spring-cloud.version>2023.0.0</spring-cloud.version>
+		<spring-cloud.version>2023.0.2</spring-cloud.version>
 		<mysql-connector-java.version>8.0.33</mysql-connector-java.version>
 		<modelmapper.version>3.2.0</modelmapper.version>
 		<springdoc.openapi.version>2.2.0</springdoc.openapi.version>

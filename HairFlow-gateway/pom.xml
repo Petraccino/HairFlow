@@ -5,17 +5,17 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.1</version>
+		<version>3.3.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>it.hair.flow</groupId>
-	<artifactId>HairFlow</artifactId>
+	<artifactId>HairFlow-gateway</artifactId>
 	<version>0.0.1</version>
-	<name>HairFlow</name>
+	<name>HairFlow-gateway</name>
 	<description>Gestione efficiente per i parrucchieri</description>
 	<properties>
 		<java.version>17</java.version>
-		<spring-cloud.version>2023.0.0</spring-cloud.version>
+		<spring-cloud.version>2023.0.2</spring-cloud.version>
 		<springdoc.openapi.version>2.3.0</springdoc.openapi.version>
 	</properties>
 	<dependencies>
