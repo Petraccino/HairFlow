@@ -1,9 +1,5 @@
-eureka:
-  client:
-    register-with-eureka: false
-    fetch-registry: false
-server:
-  port: 8761
 spring:
-   application:
-     name: HAIRFLOW-HEALT-CHECK
+  config:
+    import: optional:configserver:http://localhost:8888
+  application:
+    name: HAIRFLOW-HEALT-CHECK
