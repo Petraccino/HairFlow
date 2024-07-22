@@ -6,10 +6,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class HairFlowApplication {
+public class HairFlowGatewayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HairFlowApplication.class, args);
+		SpringApplication.run(HairFlowGatewayApplication.class, args);
 	}
 
 }
