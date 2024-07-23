@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: HAIRFLOW-ADMIN
+  config:
+    import: optional:configserver:http://localhost:8888

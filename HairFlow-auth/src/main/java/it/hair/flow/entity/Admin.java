@@ -34,7 +34,8 @@ public class Admin extends Credential implements Serializable{
 //    @Column(nullable = false, length = 150, name = "password")
 //    private String password;
 	
-	@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "informazioni_id", unique = true)
-    private InformazioniAdminUtente informazioni;
+//	@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "informazioni_id", unique = true)
+//    private InformazioniAdminUtente informazioni;
+
 }

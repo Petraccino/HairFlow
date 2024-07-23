@@ -33,6 +33,13 @@ spring:
          uri: lb://HAIRFLOW-AUTH
          predicates:
            - Path=/auth/**
+
+       - id: HairFlow-Admin
+         uri: lb://HAIRFLOW-ADMIN
+         predicates:
+           - Path=/admin/**
+         filters:
+            - AuthenticationFilter
  jackson:
    default-property-inclusion: NON_NULL
  application:
@@ -67,3 +74,6 @@ springdoc:
       - url: /auth/v3/api-docs
         name: HAIRFLOW-AUTH
         display-name: HAIRFLOW-AUTH
+      - url: /admin/v3/api-docs
+        name: HAIRFLOW-ADMIN
+        display-name: HAIRFLOW-ADMIN
