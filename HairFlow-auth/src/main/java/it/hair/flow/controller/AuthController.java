@@ -1,6 +1,7 @@
 package it.hair.flow.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import it.hair.flow.service.AuthService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,17 +18,15 @@ import it.hair.flow.dto.AdminDTO;
 import it.hair.flow.dto.AuthRequest;
 import it.hair.flow.dto.ClienteDTO;
 import it.hair.flow.dto.UtenteDTO;
-import it.hair.flow.service.AuthService;
 
 @RestController
 @RequestMapping(Constant.REQUEST_MAPPING_AUTH)
+@RequiredArgsConstructor
 public class AuthController {
-	
-	@Autowired
-    private AuthService authService;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthService authService;
+
+    private final AuthenticationManager authenticationManager;
 	
 	@PostMapping(Constant.REGISTER_USER)
     public UtenteDTO registerUser(@RequestBody UtenteDTO utente) {
