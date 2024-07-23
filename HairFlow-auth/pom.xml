@@ -18,7 +18,7 @@
 		<spring-cloud.version>2023.0.2</spring-cloud.version>
 		<mysql-connector-java.version>8.0.33</mysql-connector-java.version>
 		<modelmapper.version>3.2.0</modelmapper.version>
-		<springdoc.openapi.version>2.2.0</springdoc.openapi.version>
+		<springdoc.openapi.version>2.6.0</springdoc.openapi.version>
 	</properties>
 	<dependencies>
 		<dependency>
