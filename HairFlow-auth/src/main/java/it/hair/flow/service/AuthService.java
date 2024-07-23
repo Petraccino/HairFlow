@@ -1,5 +1,6 @@
 package it.hair.flow.service;
 
+import it.hair.flow.client.AdminClient;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,16 +33,18 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     
     private final JwtService jwtService;
-    
+
+	private final AdminClient adminClient;
+
     @Qualifier("modelMapper")
     private ModelMapper modelMapper;
-    
+
     @Qualifier("modelMapperSkypPasswordCliente")
     private ModelMapper modelMapperSkypPasswordCliente;
-    
+
     @Qualifier("modelMapperSkypPasswordUtente")
     private ModelMapper modelMapperSkypPasswordUtente;
-	
+
 	
 	public UtenteDTO registerUser(UtenteDTO utente) {
 		utente.setPassword(passwordEncoder.encode(utente.getPassword()));
@@ -79,7 +82,7 @@ public class AuthService {
 		Admin admin = credentialAdminRepository.findAdminByEmail(email)
                 .filter(a -> passwordEncoder.matches(password, a.getPassword()))
                 .orElseThrow(() -> new BadCredentialsException(Constant.BAD_CREDENTIALS_EXCEPTION + email));
-        return modelMapper.map(admin, AdminDTO.class);
+        return adminClient.findById(admin.getId());
 	}
 
 	

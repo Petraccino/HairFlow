@@ -5,13 +5,9 @@ public class Constant {
 	public final static String REQUEST_MAPPING_ADMIN = "/admin";
 	public final static String HAIR_FLOW_PATH = "/hair-flow";
 	public final static String ADMIN_PATH = "/admin";
-	public static final String ADMINS_PATH = "/admins";
-	public static final String DELETE_PATH = "/delete";
 	public static final String ID_PATH_VARIABLE = "/{id}";
 	
-	public static final String ADMINS_LIST_EMPTY = "La lista di utenti è vuota";
 	public static final String ADMIN_NOT_FOUND = "Utente non trovato";
-	public static final String DELETION_ADMIN = "Deletion: ";
 	
 	public final static String ADMIN_TITLE_GROUP_API = "HAIRFLOW-ADMIN";
 	public final static String NAMING_PACKAGE_CONTROLLER = "it.hair.flow.controller";

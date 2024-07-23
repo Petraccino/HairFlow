@@ -27,6 +27,11 @@ public class Constant {
         URI_GRANT_MAP.put(Constant.USER, Constant.USER_GRANT);
         URI_GRANT_MAP.put(Constant.CLIENT, Constant.USER_GRANT);
     }
+
+	public final static String HAIR_FLOW_PATH = "/hair-flow";
+	public final static String ADMIN_PATH = "/admin";
+	public static final String ID_PATH_VARIABLE = "/{id}";
+	public final static String REQUEST_MAPPING_ADMIN = "/admin";
     
 	public final static String BAD_CREDENTIALS_EXCEPTION = "Credenziali d'accesso non valide per ";
 	public final static String ADMIN_USURNAME_NOT_FOUND_EXCEPTION = "Admin non trovato con la seguente email: ";
