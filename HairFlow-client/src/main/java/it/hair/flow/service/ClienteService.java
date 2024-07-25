@@ -3,6 +3,7 @@ package it.hair.flow.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.hair.flow.entity.Grant;
@@ -24,17 +25,17 @@ public class ClienteService {
 	private final ObjectMapper objectMapper;
 	private final UtenteClienteRepository utenteClienteRepository;
 
-	public Cliente findById(Integer id) throws Exception {
+	public ClienteDTO findById(Integer id) throws Exception {
 		Cliente client = clienteRepository.findById(id).orElseThrow(()-> new Exception(Constant.CLIENTS_NOT_FOUND));
-		return client;
+		return objectMapper.convertValue(client, ClienteDTO.class);
 	}
 	
-	public List<Cliente> findClients() throws Exception {
+	public List<ClienteDTO> findClients() throws Exception {
 		List<Cliente> clients = clienteRepository.findAll();
 		if(clients.isEmpty()) {
 			throw new Exception(Constant.CLIENTS_LIST_EMPTY);
 		} else {
-			return clients;
+			return clients.stream().map(cliente -> objectMapper.convertValue(cliente, ClienteDTO.class)).collect(Collectors.toList());
 		}
 	}
 
@@ -49,7 +50,7 @@ public class ClienteService {
 	@Transactional
 	public Map<String, Boolean> deleteById(Integer id) throws Exception {
 		Map<String, Boolean> map = new HashMap<String,Boolean>();
-		Cliente client = findById(id);
+		ClienteDTO client = findById(id);
 		try {
 			utenteClienteRepository.deleteByUtenteId(id);
 			clienteRepository.deleteById(id);

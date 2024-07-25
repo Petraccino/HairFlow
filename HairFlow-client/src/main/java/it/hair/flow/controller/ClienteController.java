@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.hair.flow.costant.Constant;
 import it.hair.flow.dto.ClienteDTO;
-import it.hair.flow.entity.Cliente;
 
 @RestController
 @RequestMapping(Constant.REQUEST_MAPPING_CLIENT)
@@ -26,12 +25,12 @@ public class ClienteController{
 	private final ClienteService clienteService;
 
 	@GetMapping(value = Constant.HAIR_FLOW_PATH + Constant.CLIENT_PATH + Constant.ID_PATH_VARIABLE, produces = MediaType.APPLICATION_JSON_VALUE )
-	public Cliente findById(@PathVariable Integer id) throws Exception {
+	public ClienteDTO findById(@PathVariable Integer id) throws Exception {
 		return clienteService.findById(id);
 	}
 
 	@GetMapping(value = Constant.HAIR_FLOW_PATH + Constant.CLIENTS_PATH , produces = MediaType.APPLICATION_JSON_VALUE )
-	public List<Cliente> findClients() throws Exception {
+	public List<ClienteDTO> findClients() throws Exception {
 		return clienteService.findClients();
 	}
 
