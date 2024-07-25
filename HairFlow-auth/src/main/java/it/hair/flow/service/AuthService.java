@@ -23,6 +23,8 @@ import it.hair.flow.entity.Utente;
 import it.hair.flow.repository.CredentialRepository;
 import it.hair.flow.service.JwtService;
 
+import java.time.OffsetDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -60,6 +62,7 @@ public class AuthService {
 		utente.setPassword(passwordEncoder.encode(utente.getPassword()));
 		Utente userToRegister = objectMapper.convertValue(utente, Utente.class);
 		userToRegister.setGrant(Grant.builder().id(2).build());
+		userToRegister.setDataRegistrazione(OffsetDateTime.now());
         Utente registeredUser = credentialUtenteRepository.save(userToRegister);
         return userClient.findById(registeredUser.getId());
 	}
