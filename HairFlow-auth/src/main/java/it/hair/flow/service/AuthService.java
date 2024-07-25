@@ -78,9 +78,11 @@ public class AuthService {
 	
 	public ClienteDTO registerClient(ClienteDTO cliente) {
 		cliente.setPassword(passwordEncoder.encode(cliente.getPassword()));
-		Cliente register = modelMapper.map(cliente, Cliente.class);
-        ClienteDTO clienteDTO = modelMapperSkypPasswordCliente.map(credentialClienteRepository.save(register), ClienteDTO.class);
-        return clienteDTO;
+		Cliente clientToRegister = objectMapper.convertValue(cliente, Cliente.class);
+		clientToRegister.setGrant(Grant.builder().id(3).build());
+		clientToRegister.setDataRegistrazione(OffsetDateTime.now());
+        Cliente registeredClient = credentialClienteRepository.save(clientToRegister);
+        return clientClient.findById(registeredClient.getId());
 	}
 
 	
