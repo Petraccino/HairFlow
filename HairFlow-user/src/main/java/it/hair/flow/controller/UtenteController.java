@@ -28,12 +28,12 @@ public class UtenteController {
 	private final UtenteService utenteService;
 
 	@GetMapping(value = Constant.HAIR_FLOW_PATH + Constant.USER_PATH + Constant.ID_PATH_VARIABLE, produces = MediaType.APPLICATION_JSON_VALUE )
-	public Utente findById(@PathVariable Integer id) throws Exception {
+	public UtenteDTO findById(@PathVariable Integer id) throws Exception {
 		return utenteService.findById(id);
 	}
 
 	@GetMapping(value = Constant.HAIR_FLOW_PATH + Constant.USERS_PATH, produces = MediaType.APPLICATION_JSON_VALUE )
-	public List<Utente> findUsers() throws Exception {
+	public List<UtenteDTO> findUsers() throws Exception {
 		return utenteService.findUsers();
 	}
 

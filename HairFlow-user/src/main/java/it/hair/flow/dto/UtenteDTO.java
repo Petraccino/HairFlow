@@ -11,7 +11,7 @@ public class UtenteDTO {
 	private Integer id;
  	private String email;
  	private String password;
-    private GrantDTO grantDTO;
+    private GrantDTO grant;
 	private String nome;
 	private String cognome;
 	private LocalDate dataNascita;
