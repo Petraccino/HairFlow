@@ -6,9 +6,6 @@ import it.hair.flow.client.ClientClient;
 import it.hair.flow.client.UserClient;
 import it.hair.flow.entity.Grant;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,7 +18,6 @@ import it.hair.flow.entity.Admin;
 import it.hair.flow.entity.Cliente;
 import it.hair.flow.entity.Utente;
 import it.hair.flow.repository.CredentialRepository;
-import it.hair.flow.service.JwtService;
 
 import java.time.OffsetDateTime;
 

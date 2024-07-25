@@ -7,7 +7,6 @@ import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.hair.flow.entity.Grant;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import it.hair.flow.costant.Constant;
@@ -20,7 +19,6 @@ import it.hair.flow.repository.ClienteRepository;
 public class ClienteService {
 
 	private final ClienteRepository clienteRepository;
-	private final ModelMapper modelMapper;
 	private final ObjectMapper objectMapper;
 	
 	public Cliente findById(Integer id) throws Exception {

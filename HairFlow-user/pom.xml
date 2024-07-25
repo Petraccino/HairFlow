@@ -16,7 +16,6 @@
 		<java.version>17</java.version>
 		<spring-cloud.version>2023.0.2</spring-cloud.version>
 		<mysql-connector-java.version>8.0.33</mysql-connector-java.version>
-		<modelmapper.version>3.2.0</modelmapper.version>
 		<springdoc.openapi.version>2.6.0</springdoc.openapi.version>
 	</properties>
 	<!-- Spring dependencies -->
@@ -60,12 +59,6 @@
     		<groupId>org.projectlombok</groupId>
     		<artifactId>lombok</artifactId>
     		<optional>true</optional>
-		</dependency>
-		<!-- Mapper -->
-		<dependency>
-    		<groupId>org.modelmapper</groupId>
-    		<artifactId>modelmapper</artifactId>
-    		<version>${modelmapper.version}</version>
 		</dependency>
 		<!-- Swagger -->
 		<dependency>
