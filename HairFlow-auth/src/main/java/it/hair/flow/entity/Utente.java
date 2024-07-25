@@ -1,17 +1,10 @@
 package it.hair.flow.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -20,7 +13,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class Utente extends Credential implements Serializable{
-	
+
 	private static final long serialVersionUID = 1202123354994470684L;
 
 	@Id
@@ -33,11 +26,32 @@ public class Utente extends Credential implements Serializable{
 //
 //    @Column(nullable = false, length = 150, name = "password")
 //    private String password;
-	
-	@Column(name = "grant_id", nullable = false)
-    private Integer grant;
 
-    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "informazioni_id", unique = true)
-    private InformazioniAdminUtente informazioni;
+    @Column(nullable = false, name = "nome")
+    private String nome;
+
+    @Column(nullable = false, name = "cognome")
+    private String cognome;
+
+    @Column(name = "data_nascita")
+    private LocalDate dataNascita;
+
+    @Column(length = 20, name = "provincia")
+    private String provincia;
+
+    @Column(length = 20, name = "numero_telefono")
+    private String numeroTelefono;
+
+    @Column(length = 1, name = "sesso")
+    private String sesso;
+
+    @Column(length = 30, name = "codice_fiscale")
+    private String codiceFiscale;
+
+    @Column(name = "data_registrazione")
+    private OffsetDateTime dataRegistrazione;
+
+    @ManyToOne
+    @JoinColumn(name = "grant_id", unique = true)
+    private Grant grant;
 }

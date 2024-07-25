@@ -16,8 +16,7 @@ public class Credential {
 	
 	@Column(nullable = false, unique = true, length = 55, name = "email")
     private String email;
-	
-	@JsonIgnore
+
 	@Column(nullable = false, length = 150, name = "password")
     private String password;
 }
