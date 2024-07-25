@@ -8,17 +8,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -60,23 +50,11 @@ public class Cliente implements Serializable{
     @Column(name = "data_registrazione")
     private OffsetDateTime dataRegistrazione;
 
-    @Transient
     @Column(nullable = false, length = 150, name = "password")
     private String password;
- 
-//    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "grant_id", unique = true)
-//    private Grant grant;
-  
-  @Column(name = "grant_id", nullable = false)
-  private Integer grant;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "utente_cliente",
-            joinColumns = @JoinColumn(name = "cliente_id"),
-            inverseJoinColumns = @JoinColumn(name = "utente_id")
-    )
-    @JsonManagedReference
-    private List<Utente> utentes = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "grant_id", unique = true)
+    private Grant grant;
+
 }

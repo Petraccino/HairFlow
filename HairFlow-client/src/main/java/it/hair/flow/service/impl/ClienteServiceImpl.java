@@ -41,7 +41,6 @@ public class ClienteServiceImpl implements ClienteService{
 	@Override
 	public ClienteDTO updateClient(ClienteDTO client) throws Exception {
 		Cliente cliDaAggiornare = findById(client.getId());
-		client.setUtentes(modelMapper.map(cliDaAggiornare.getUtentes(), List.class));
 		Cliente clientUpdate = modelMapper.map(client, Cliente.class);
 		clienteRepository.save(clientUpdate);
 		return modelMapper.map(clientUpdate, ClienteDTO.class);
