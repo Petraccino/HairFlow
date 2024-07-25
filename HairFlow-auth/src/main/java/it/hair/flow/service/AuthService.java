@@ -1,8 +1,10 @@
 package it.hair.flow.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import it.hair.flow.client.AdminClient;
 import it.hair.flow.client.ClientClient;
 import it.hair.flow.client.UserClient;
+import it.hair.flow.entity.Grant;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,8 @@ public class AuthService {
 
 	private final ClientClient clientClient;
 
+	private final ObjectMapper objectMapper;
+
     @Qualifier("modelMapper")
     private ModelMapper modelMapper;
 
@@ -54,9 +58,10 @@ public class AuthService {
 	
 	public UtenteDTO registerUser(UtenteDTO utente) {
 		utente.setPassword(passwordEncoder.encode(utente.getPassword()));
-		Utente register = modelMapper.map(utente, Utente.class);
-        UtenteDTO utenteDTO = modelMapperSkypPasswordUtente.map(credentialUtenteRepository.save(register), UtenteDTO.class);
-        return utenteDTO;
+		Utente userToRegister = objectMapper.convertValue(utente, Utente.class);
+		userToRegister.setGrant(Grant.builder().id(2).build());
+        Utente registeredUser = credentialUtenteRepository.save(userToRegister);
+        return userClient.findById(registeredUser.getId());
 	}
 
 	

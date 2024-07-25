@@ -1,11 +1,17 @@
 package it.hair.flow.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "\"Grant\"")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Grant {
 	
 	@Id
@@ -18,6 +24,6 @@ public class Grant {
 
     @Column(nullable = false, length = 25, name = "descrizione")
     private String descrizione;
-    
-    
+
+
 }
