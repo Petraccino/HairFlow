@@ -23,12 +23,11 @@ public class Utente {
     @Column(nullable = false, unique = true, length = 55, name = "email")
     private String email;
 
-    @Transient
     @Column(nullable = false, length = 150, name = "password")
     private String password;
 
     @ManyToOne
-    @JoinColumn(name = "grant_id", unique = true)
+    @JoinColumn(name = "grant_id")
     private Grant grant;
 
     @Column(nullable = false, name = "nome")

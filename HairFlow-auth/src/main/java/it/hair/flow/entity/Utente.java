@@ -52,6 +52,6 @@ public class Utente extends Credential implements Serializable{
     private OffsetDateTime dataRegistrazione;
 
     @ManyToOne
-    @JoinColumn(name = "grant_id", unique = true)
+    @JoinColumn(name = "grant_id")
     private Grant grant;
 }

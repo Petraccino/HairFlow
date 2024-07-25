@@ -23,7 +23,7 @@ public class Admin {
     private String password;
 
     @ManyToOne
-    @JoinColumn(name = "grant_id", unique = true)
+    @JoinColumn(name = "grant_id")
     private Grant grant;
 
     @Column(nullable = false, name = "nome")

@@ -52,12 +52,12 @@ public class Cliente extends Credential implements Serializable{
 
     @Column(name = "data_registrazione")
     private OffsetDateTime dataRegistrazione;
-    
 
 //    @Column(nullable = false, length = 150, name = "password")
 //    private String password;
-    
-    @Column(name = "grant_id" )
-    private Integer grant;
+
+    @ManyToOne
+    @JoinColumn(name = "grant_id")
+    private Grant grant;
 
 }
