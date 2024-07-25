@@ -3,6 +3,8 @@ package it.hair.flow.controller;
 import java.util.List;
 import java.util.Map;
 
+import it.hair.flow.service.UtenteService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,15 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 import it.hair.flow.constant.Constant;
 import it.hair.flow.dto.UtenteDTO;
 import it.hair.flow.entity.Utente;
-import it.hair.flow.service.UtenteService;
 
 
 @RestController
 @RequestMapping(Constant.REQUEST_MAPPING_USER)
+@RequiredArgsConstructor
 public class UtenteController {
 
-	@Autowired
-	private UtenteService utenteService;
+	private final UtenteService utenteService;
 
 	@GetMapping(value = Constant.HAIR_FLOW_PATH + Constant.USER_PATH + Constant.ID_PATH_VARIABLE, produces = MediaType.APPLICATION_JSON_VALUE )
 	public Utente findById(@PathVariable Integer id) throws Exception {
