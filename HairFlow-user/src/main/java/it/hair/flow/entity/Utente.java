@@ -53,5 +53,9 @@ public class Utente {
 
     @Column(name = "data_registrazione")
     private OffsetDateTime dataRegistrazione;
+
+    @OneToMany
+    @JoinColumn(name = "utente_id", referencedColumnName = "id")
+    private List<UtenteCliente> utentiAssociati;
 	
 }

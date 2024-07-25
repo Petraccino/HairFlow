@@ -57,4 +57,8 @@ public class Cliente implements Serializable{
     @JoinColumn(name = "grant_id")
     private Grant grant;
 
+    @OneToMany
+    @JoinColumn(name = "cliente_id", referencedColumnName = "id")
+    private List<UtenteCliente> utentiAssociati;
+
 }
