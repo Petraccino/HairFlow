@@ -1,23 +1,13 @@
 package it.hair.flow.entity;
 
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -37,24 +27,32 @@ public class Utente {
     @Column(nullable = false, length = 150, name = "password")
     private String password;
 
-//    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "grant_id", unique = true)
-//    private Grant grant;
-    
-    @Column(name = "grant_id", nullable = false)
-    private Integer grant;
+    @ManyToOne
+    @JoinColumn(name = "grant_id", unique = true)
+    private Grant grant;
 
-    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "informazioni_id", unique = true)
-    private InformazioniAdminUtente informazioni;
-    
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-    		name = "utente_cliente",
-    		joinColumns = @JoinColumn(name = "utente_id"),
-    		inverseJoinColumns = @JoinColumn(name = "cliente_id")
-    		)
-    @JsonManagedReference
-    private List<Cliente> clientes = new ArrayList<>();
+    @Column(nullable = false, name = "nome")
+    private String nome;
+
+    @Column(nullable = false, name = "cognome")
+    private String cognome;
+
+    @Column(name = "data_nascita")
+    private LocalDate dataNascita;
+
+    @Column(length = 20, name = "provincia")
+    private String provincia;
+
+    @Column(length = 20, name = "numero_telefono")
+    private String numeroTelefono;
+
+    @Column(length = 1, name = "sesso")
+    private String sesso;
+
+    @Column(length = 30, name = "codice_fiscale")
+    private String codiceFiscale;
+
+    @Column(name = "data_registrazione")
+    private OffsetDateTime dataRegistrazione;
 	
 }

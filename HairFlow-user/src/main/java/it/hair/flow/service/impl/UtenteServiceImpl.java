@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import it.hair.flow.constant.Constant;
 import it.hair.flow.dto.UtenteDTO;
-import it.hair.flow.entity.InformazioniAdminUtente;
 import it.hair.flow.entity.Utente;
 import it.hair.flow.repository.UtenteRepository;
 import it.hair.flow.service.UtenteService;
@@ -42,7 +41,6 @@ public class UtenteServiceImpl implements UtenteService{
 	@Override
 	public UtenteDTO updateUser(UtenteDTO utente) throws Exception {
 		Utente uteDaAggiornare = findById(utente.getId());
-		uteDaAggiornare.setInformazioni(modelMapper.map(utente.getInformazioni(), InformazioniAdminUtente.class));
 		utenteRepository.save(uteDaAggiornare);
 		return modelMapper.map(uteDaAggiornare, UtenteDTO.class);
 	}
@@ -53,7 +51,6 @@ public class UtenteServiceImpl implements UtenteService{
 		Utente utente = findById(id);
 		try {
 			utenteRepository.deleteById(id);
-			map.put(Constant.DELETION_USER + utente.getInformazioni().getNome(), Boolean.TRUE);
 		} catch(IllegalArgumentException iae) {
 			map.put("Deletion", Boolean.FALSE);
 			iae.printStackTrace();
