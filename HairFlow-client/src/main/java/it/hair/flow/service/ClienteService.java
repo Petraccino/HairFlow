@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.hair.flow.entity.Grant;
+import it.hair.flow.repository.UtenteClienteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import it.hair.flow.costant.Constant;
 import it.hair.flow.dto.ClienteDTO;
 import it.hair.flow.entity.Cliente;
 import it.hair.flow.repository.ClienteRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +22,8 @@ public class ClienteService {
 
 	private final ClienteRepository clienteRepository;
 	private final ObjectMapper objectMapper;
-	
+	private final UtenteClienteRepository utenteClienteRepository;
+
 	public Cliente findById(Integer id) throws Exception {
 		Cliente client = clienteRepository.findById(id).orElseThrow(()-> new Exception(Constant.CLIENTS_NOT_FOUND));
 		return client;
@@ -42,11 +45,13 @@ public class ClienteService {
 		Cliente clientUpdate = clienteRepository.save(clientToUpdate);
 		return objectMapper.convertValue(clientUpdate, ClienteDTO.class);
 	}
-	
+
+	@Transactional
 	public Map<String, Boolean> deleteById(Integer id) throws Exception {
 		Map<String, Boolean> map = new HashMap<String,Boolean>();
 		Cliente client = findById(id);
 		try {
+			utenteClienteRepository.deleteByUtenteId(id);
 			clienteRepository.deleteById(id);
 			map.put(Constant.DELETION_CLIENT +client.getNome(), Boolean.TRUE);
 		} catch(IllegalArgumentException iae) {
