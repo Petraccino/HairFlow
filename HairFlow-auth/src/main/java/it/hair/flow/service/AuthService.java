@@ -47,16 +47,6 @@ public class AuthService {
 	private final ClientClient clientClient;
 
 	private final ObjectMapper objectMapper;
-
-    @Qualifier("modelMapper")
-    private ModelMapper modelMapper;
-
-    @Qualifier("modelMapperSkypPasswordCliente")
-    private ModelMapper modelMapperSkypPasswordCliente;
-
-    @Qualifier("modelMapperSkypPasswordUtente")
-    private ModelMapper modelMapperSkypPasswordUtente;
-
 	
 	public UtenteDTO registerUser(UtenteDTO utente) {
 		utente.setPassword(passwordEncoder.encode(utente.getPassword()));
@@ -84,7 +74,6 @@ public class AuthService {
         Cliente registeredClient = credentialClienteRepository.save(clientToRegister);
         return clientClient.findById(registeredClient.getId());
 	}
-
 	
 	public ClienteDTO loginClient(String email, String password) {
 		Cliente cliente = credentialClienteRepository.findClienteByEmail(email)
