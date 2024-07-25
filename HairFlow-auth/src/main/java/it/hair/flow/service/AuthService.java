@@ -1,6 +1,7 @@
 package it.hair.flow.service;
 
 import it.hair.flow.client.AdminClient;
+import it.hair.flow.client.ClientClient;
 import it.hair.flow.client.UserClient;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -38,6 +39,8 @@ public class AuthService {
 	private final AdminClient adminClient;
 
 	private final UserClient userClient;
+
+	private final ClientClient clientClient;
 
     @Qualifier("modelMapper")
     private ModelMapper modelMapper;
@@ -77,7 +80,7 @@ public class AuthService {
 		Cliente cliente = credentialClienteRepository.findClienteByEmail(email)
                 .filter(c -> passwordEncoder.matches(password, c.getPassword()))
                 .orElseThrow(() -> new BadCredentialsException(Constant.BAD_CREDENTIALS_EXCEPTION + email));
-        return modelMapperSkypPasswordCliente.map(cliente, ClienteDTO.class);
+        return clientClient.findById(cliente.getId());
 	}
 
 	

@@ -11,7 +11,7 @@ import lombok.Data;
 public class ClienteDTO implements Serializable {
 
 	private static final long serialVersionUID = -2229427239748020099L;
-	private Integer id;
+    private Integer id;
     private String nome;
     private String cognome;
     private LocalDate dataNascita;
@@ -21,7 +21,6 @@ public class ClienteDTO implements Serializable {
     private String sesso;
     private LocalDate dataUltimaVisita;
     private OffsetDateTime dataRegistrazione;
-    private Integer grant;
     private String password;
-    private List<UtenteDTO> utentes;
+    private GrantDTO grant;
 }
