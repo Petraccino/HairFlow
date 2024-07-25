@@ -1,5 +1,4 @@
 package it.hair.flow.dto;
-import it.hair.flow.entity.InformazioniAdminUtente;
 import lombok.Data;
 
 @Data
