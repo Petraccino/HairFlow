@@ -21,7 +21,7 @@ WORKDIR /app
 COPY --from=build /app/target/HairFlow-healt-check-0.0.1.jar /app/HairFlow-healt-check.jar
 
 # Espone la porta su cui l'applicazione gira (modifica se necessario)
-EXPOSE 8080
+EXPOSE 8761
 
 # Comando per avviare l'applicazione
 ENTRYPOINT ["java", "-jar", "HairFlow-healt-check.jar"]

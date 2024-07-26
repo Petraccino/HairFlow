@@ -21,7 +21,7 @@ WORKDIR /app
 COPY --from=build /app/target/HairFlow-config-server-1.0-SNAPSHOT.jar /app/HairFlow-config-server.jar
 
 # Espone la porta su cui l'applicazione gira (modifica se necessario)
-EXPOSE 8080
+EXPOSE 8888
 
 # Comando per avviare l'applicazione
 ENTRYPOINT ["java", "-jar", "HairFlow-config-server.jar"]
