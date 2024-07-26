@@ -1,0 +1,25 @@
+version: '3.9'
+services:
+  config-server:
+    image: config-server:latest
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    environment:
+      - SPRING_PROFILES_ACTIVE=native
+    networks:
+      - hairflow-network
+
+  health-check:
+    image: health-check:latest
+    container_name: health-check
+    ports:
+      - "8761:8761"
+    depends_on:
+      - config-server
+    networks:
+      - hairflow-network
+
+networks:
+  hairflow-network:
+    driver: bridge
