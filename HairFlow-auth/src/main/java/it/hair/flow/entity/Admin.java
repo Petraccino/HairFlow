@@ -2,6 +2,7 @@ package it.hair.flow.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -10,7 +11,8 @@ import java.time.OffsetDateTime;
 @Entity
 @Table(name = "\"Admin\"")
 @Data
-public class Admin extends Credential  implements Serializable {
+@EqualsAndHashCode(callSuper=true)
+public class Admin extends Credential implements Serializable {
 
     private static final long serialVersionUID = -3878710076090925708L;
 	
