@@ -21,7 +21,7 @@ class HairFlowAuthApplicationTests {
 			.withFileSystemBind("src/main/resources/application-test.yaml", "/usr/share/nginx/html/application-test.yaml", BindMode.READ_ONLY);
 
 	@DynamicPropertySource
-	static void mySQLContainerProperties(DynamicPropertyRegistry registry) {
+	static void customProperties(DynamicPropertyRegistry registry) {
 		registry.add("spring.datasource.url", mySQLContainer::getJdbcUrl);
 		registry.add("spring.datasource.username", mySQLContainer::getUsername);
 		registry.add("spring.datasource.password", mySQLContainer::getPassword);

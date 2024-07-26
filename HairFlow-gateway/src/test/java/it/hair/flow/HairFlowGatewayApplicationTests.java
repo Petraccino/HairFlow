@@ -11,7 +11,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 class HairFlowGatewayApplicationTests {
 
 	@DynamicPropertySource
-	static void mySQLContainerProperties(DynamicPropertyRegistry registry) {
+	static void customProperties(DynamicPropertyRegistry registry) {
 		registry.add("eureka.client.registerWithEureka", () -> false);
 		registry.add("eureka.client.fetchRegistry", () -> false);
 	}
