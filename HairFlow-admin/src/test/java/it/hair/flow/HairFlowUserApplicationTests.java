@@ -19,12 +19,12 @@ class HairFlowUserApplicationTests {
 			.withDatabaseName("test")
 			.withUsername("test")
 			.withPassword("test")
-			.withFileSystemBind("src/resources/application-test.yaml", "/usr/share/nginx/html/application-test.yaml", BindMode.READ_ONLY);
+			.withFileSystemBind("src/main/resources/application-test.yaml", "/usr/share/nginx/html/application-test.yaml", BindMode.READ_ONLY);
 
 	@Container
 	static GenericContainer<?> configServerContainer = new GenericContainer<>("nginx:latest")
 			.withExposedPorts(80)
-			.withFileSystemBind("src/resources/application-test.yaml", "/usr/share/nginx/html/application-test.yaml", BindMode.READ_ONLY);
+			.withFileSystemBind("src/main/resources/application-test.yaml", "/usr/share/nginx/html/application-test.yaml", BindMode.READ_ONLY);
 
 
 	@DynamicPropertySource
