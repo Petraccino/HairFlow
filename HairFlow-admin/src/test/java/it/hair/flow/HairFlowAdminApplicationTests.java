@@ -17,8 +17,7 @@ class HairFlowAdminApplicationTests {
 	static MySQLContainer<?> mySQLContainer = new MySQLContainer<>("mysql:8.0")
 			.withDatabaseName("test")
 			.withUsername("test")
-			.withPassword("test")
-			.withFileSystemBind("src/main/resources/application-test.yaml", "/usr/share/nginx/html/application-test.yaml", BindMode.READ_ONLY);
+			.withPassword("test");
 
 	@DynamicPropertySource
 	static void customProperties(DynamicPropertyRegistry registry) {
