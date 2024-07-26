@@ -26,6 +26,9 @@ class HairFlowAdminApplicationTests {
 		registry.add("spring.datasource.username", mySQLContainer::getUsername);
 		registry.add("spring.datasource.password", mySQLContainer::getPassword);
 
+		registry.add("eureka.client.registerWithEureka", () -> false);
+		registry.add("eureka.client.fetchRegistry", () -> false);
+
 	}
 
 	@Test
